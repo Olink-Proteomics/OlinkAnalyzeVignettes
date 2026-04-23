@@ -30,7 +30,7 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::pak, any::remotes, any::stringr, any::covr, any::devtools, any::rmarkdown, any::roxygen2, local::.
+          extra-packages: any::pak, any::remotes, any::stringr, any::devtools, any::rmarkdown, any::roxygen2, local::.
 
       - name: Render Rmarkdown files
         run: |
