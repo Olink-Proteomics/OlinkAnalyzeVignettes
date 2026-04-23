@@ -46,10 +46,10 @@ jobs:
 
       - name: Document
         run: |
-          # capture output of roxygen2::roxygenise on OlinkAnalyze
+          # capture output of roxygen2::roxygenise on OlinkAnalyzeVignettes
           doc_output <- tryCatch(
             {
-              capture.output(roxygen2::roxygenise(package.dir = "OlinkAnalyze"), type = "message")
+              capture.output(roxygen2::roxygenise(package.dir = "."), type = "message")
             },
             error = function(e) {
               message("Error: ", e$message)
@@ -69,7 +69,7 @@ jobs:
         run: |
           git config --local user.name "$GITHUB_ACTOR"
           git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          git add OlinkAnalyze/man/\* OlinkAnalyze/NAMESPACE
+          git add man/\* NAMESPACE
           git commit -am 'Document' || echo "No changes to commit"
 
       - name: Pull first
