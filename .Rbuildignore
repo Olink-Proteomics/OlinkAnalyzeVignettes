@@ -10,7 +10,7 @@
 ^cran-comments\.md$
 ^CITATION\.cff$
 ^data-raw$
-^.RData
-^.Rhistory
+^\.RData$
+^\.Rhistory$
 ^\.positai$
 ^\.claude$
