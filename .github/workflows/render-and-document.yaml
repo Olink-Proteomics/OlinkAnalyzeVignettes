@@ -7,23 +7,20 @@ on:
 
 name: render-and-document
 
-permissions:
-  contents: write
-
 jobs:
   render-and-document:
     name: render-and-document
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
-      GITHUB_PAT: ${{ github.token }}
+      GITHUB_PAT: ${{ secrets.OA_PAT }}
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ github.token }}
+          token: ${{ secrets.OA_PAT }}
 
       - uses: r-lib/actions/setup-pandoc@v2
 
@@ -41,32 +38,33 @@ jobs:
           Rscript -e 'for (f in commandArgs(TRUE)) if (file.exists(f)) rmarkdown::render(f)' ${RMD_PATH[*]}
 
       - name: Commit results
-        if: github.repository == 'Olink-Proteomics/OlinkAnalyzeVignettes' && github.ref_type == 'branch'
         run: |
           git config --local user.name "$GITHUB_ACTOR"
           git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          git add -A
-          git commit -m 'Re-build Rmarkdown files' || echo "No changes to commit"
+          git commit -am 'Re-build Rmarkdown files' || echo "No changes to commit"
 
       - name: Document
         run: |
-          old_warn <- getOption("warn")
-          options(warn = 2)
-          on.exit(options(warn = old_warn), add = TRUE)
-
-          tryCatch(
+          # capture output of roxygen2::roxygenise on OlinkAnalyzeVignettes
+          doc_output <- tryCatch(
             {
-              roxygen2::roxygenise(package.dir = ".")
+              capture.output(roxygen2::roxygenise(package.dir = "."), type = "message")
             },
             error = function(e) {
-              message("Roxygen2 documentation failed: ", conditionMessage(e))
+              message("Error: ", e$message)
               quit(status = 1)
             }
           )
+
+          # Check for "✖" symbol in the output, which indicates an issue
+          if (any(grepl("✖", doc_output))) {
+            message("Roxygen2 found documentation issues:\n",
+                    paste(doc_output[grepl("✖", doc_output)], collapse = "\n"))
+            quit(status = 1)
+          }
         shell: Rscript {0}
 
       - name: Commit results
-        if: github.repository == 'Olink-Proteomics/OlinkAnalyzeVignettes' && github.ref_type == 'branch'
         run: |
           git config --local user.name "$GITHUB_ACTOR"
           git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
@@ -74,12 +72,9 @@ jobs:
           git commit -am 'Document' || echo "No changes to commit"
 
       - name: Pull first
-        if: github.repository == 'Olink-Proteomics/OlinkAnalyzeVignettes' && github.ref_type == 'branch'
         run: |
-          git fetch origin "${GITHUB_REF_NAME}"
-          git rebase "origin/${GITHUB_REF_NAME}"
+          git pull
 
       - name: Push
-        if: github.repository == 'Olink-Proteomics/OlinkAnalyzeVignettes' && github.ref_type == 'branch'
         run: |
-          git push origin "HEAD:${GITHUB_REF_NAME}"
+          git push origin
