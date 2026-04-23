@@ -5,11 +5,11 @@ on:
     branches-ignore:
       - 'main'
 
-name: coverage-render-and-document
+name: render-and-document
 
 jobs:
-  coverage-render-and-document:
-    name: coverage-render-and-document
+  render-and-document:
+    name: render-and-document
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
