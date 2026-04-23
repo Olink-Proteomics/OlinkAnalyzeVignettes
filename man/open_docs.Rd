@@ -2,10 +2,10 @@
 % Please edit documentation in R/OlinkAnalyzeVignettes_OA-repo.R
 \name{open_docs}
 \alias{open_docs}
-\title{Open the OlinkAnalyze GitHub repo page.}
+\title{Open the OlinkAnalyze GitHub repo page}
 \usage{
 open_docs()
 }
 \description{
-Open the OlinkAnalyze GitHub repo page.
+Open the OlinkAnalyze GitHub repo page
 }
