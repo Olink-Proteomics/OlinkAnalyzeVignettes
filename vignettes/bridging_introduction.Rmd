@@ -311,7 +311,7 @@ npx_before_br <- npx_data1 %>%
                                 SampleID))
   })
 
-if (rlang::is_installed(pkg = "ggpubr")) {
+if (requireNamespace(package = "ggpubr", quietly = TRUE)) {
   ### PCA plot
   OlinkAnalyze::olink_pca_plot(df          = npx_before_br,
                                color_g     = "Type",
@@ -554,7 +554,7 @@ npx_after_br <- npx_br_data %>%
                               paste(Project, "Sample"))) %>%
   dplyr:::mutate(SampleID = paste0(Project, PlateID, SampleID))
 
-if (rlang::is_installed(pkg = "ggpubr")) {
+if (requireNamespace(package = "ggpubr", quietly = TRUE)) {
   ### PCA plot
   OlinkAnalyze::olink_pca_plot(df          = npx_after_br,
                                color_g     = "Type",
