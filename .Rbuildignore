@@ -1,3 +1,16 @@
+^LICENSE\.md$
+^revdep$
+^\.github$
+^.*\.Rproj$
 ^OlinkAnalyzeVignettes\.Rproj$
 ^\.Rproj\.user$
-^LICENSE\.md$
+^README\.Rmd$
+^doc$
+^Meta$
+^cran-comments\.md$
+^CITATION\.cff$
+^data-raw$
+^\.RData$
+^\.Rhistory$
+^\.positai$
+^\.claude$
