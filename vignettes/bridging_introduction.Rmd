@@ -554,10 +554,12 @@ npx_after_br <- npx_br_data %>%
                               paste(Project, "Sample"))) %>%
   dplyr:::mutate(SampleID = paste0(Project, PlateID, SampleID))
 
-### PCA plot
-OlinkAnalyze::olink_pca_plot(df          = npx_after_br,
-                             color_g     = "Type",
-                             byPanel     = TRUE)
+if (rlang::is_installed(pkg = "ggpubr")) {
+  ### PCA plot
+  OlinkAnalyze::olink_pca_plot(df          = npx_after_br,
+                               color_g     = "Type",
+                               byPanel     = TRUE)
+}
 ```
 
 ## Export Bridged data
