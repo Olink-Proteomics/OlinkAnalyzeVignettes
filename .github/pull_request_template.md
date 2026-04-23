@@ -12,8 +12,8 @@
 * ...
 
 ## Checklist
-- [ ] Make sure you are requesting to **merge a feature/bugfix branch** (right side, the PR source branch). This should not be main or develop.
-- [ ] Make sure you make a pull request against either **main or develop** (left side). (Requesting to main should be reserved for bugfixes and new releases)
+- [ ] Make sure you are requesting to **merge a feature/bugfix branch** (right side, the PR source branch). This should not be a protected long-lived branch such as `main`.
+- [ ] Make sure you make a pull request against **main** or the appropriate **release/maintenance branch** (left side), following the repository branching strategy.
 - [ ] Add necessary documentation (if applicable)
 
 ## Type of changes
