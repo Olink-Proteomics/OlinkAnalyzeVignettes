@@ -52,6 +52,7 @@ jobs:
             any::knitr
             any::rmarkdown
             any::kableExtra
+            any::OlinkAnalyze
           needs: check
 
       - uses: r-lib/actions/check-r-package@v2
