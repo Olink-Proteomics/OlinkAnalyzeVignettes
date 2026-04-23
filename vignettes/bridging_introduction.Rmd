@@ -311,10 +311,12 @@ npx_before_br <- npx_data1 %>%
                                 SampleID))
   })
 
-### PCA plot
-OlinkAnalyze::olink_pca_plot(df          = npx_before_br,
-                             color_g     = "Type",
-                             byPanel     = TRUE)
+if (rlang::is_installed(pkg = "ggpubr")) {
+  ### PCA plot
+  OlinkAnalyze::olink_pca_plot(df          = npx_before_br,
+                               color_g     = "Type",
+                               byPanel     = TRUE)
+}
 ```
 
 ## Perform bridging between two data sets
