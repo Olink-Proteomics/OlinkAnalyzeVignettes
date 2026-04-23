@@ -2,7 +2,6 @@
 ^revdep$
 ^\.github$
 ^.*\.Rproj$
-^OlinkAnalyzeVignettes\.Rproj$
 ^\.Rproj\.user$
 ^README\.Rmd$
 ^doc$
