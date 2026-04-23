@@ -1,6 +1,6 @@
 [
    {
-      "os": "macOS-latest",
+      "os": "macos-latest",
       "r": "release",
       "runOn": "pull_request"
    },
