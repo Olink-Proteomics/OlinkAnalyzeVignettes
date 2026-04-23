@@ -185,16 +185,17 @@ outlier_data |>
 Once the correct outliers have been highlighted in the graph, we can then programmatically extract the outlier SampleIDs using *dplyr*.
 
 ```{r}
-outliers_pca_labeled <- outlier_data |> 
-  dplyr::filter(stringr::str_detect(SampleID, "CONTROL", negate = T)) |> # Filter duplicate SampleIDs
-  olink_pca_plot(outlierDefX = 3, outlierDefY = 3, outlierLines = FALSE, 
-                 label_outliers = TRUE, quiet = TRUE) 
-
-outliers_pca_labeled[[1]]$data |> 
-  dplyr::filter(Outlier == TRUE) |> 
-  dplyr::select(SampleID) |> 
-  dplyr::distinct()
-
+if (requireNamespace(package = "ggrepel", quietly = TRUE)) {
+  outliers_pca_labeled <- outlier_data |> 
+    dplyr::filter(stringr::str_detect(SampleID, "CONTROL", negate = T)) |> # Filter duplicate SampleIDs
+    olink_pca_plot(outlierDefX = 3, outlierDefY = 3, outlierLines = FALSE, 
+                   label_outliers = TRUE, quiet = TRUE) 
+  
+  outliers_pca_labeled[[1]]$data |> 
+    dplyr::filter(Outlier == TRUE) |> 
+    dplyr::select(SampleID) |> 
+    dplyr::distinct()
+}
 ```
 
 ## NPX Distribution Plot
