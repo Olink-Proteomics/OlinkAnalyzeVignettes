@@ -1,11 +1,82 @@
+Type: Package
 Package: OlinkAnalyzeVignettes
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Title: Vignettes that Facilitate Analysis of Proteomic Data from Olink
+Version: 1.0.0
+Authors@R: c(
+    person("Kathleen", "Nevola", , "biostattools@olink.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-5183-6444", "kathy-nevola")),
+    person("Marianne", "Sandin", role = "aut",
+           comment = c(ORCID = "0000-0001-6186-963X", "marisand")),
+    person("Jamey", "Guess", role = "aut",
+           comment = c(ORCID = "0000-0002-4017-0923", "jrguess")),
+    person("Simon", "Forsberg", role = "aut",
+           comment = c(ORCID = "0000-0002-7451-9222", "simfor")),
+    person("Christoffer", "Cambronero", role = "aut",
+           comment = c("Orbmac")),
+    person("Pascal", "Pucholt", role = "aut",
+           comment = c(ORCID = "0000-0003-3342-1373", "AskPascal")),
+    person("Boxi", "Zhang", role = "aut",
+           comment = c(ORCID = "0000-0001-7758-6204", "boxizhang")),
+    person("Masoumeh", "Sheikhi", role = "aut",
+           comment = c("MasoumehSheikhi")),
+    person("Klev", "Diamanti", role = "aut",
+           comment = c(ORCID = "0000-0002-4922-8415", "klevdiamanti")),
+    person("Amrita", "Kar", role = "aut",
+           comment = c("amrita-kar")),
+    person("Lei", "Conze", role = "aut", 
+            comment = c("leiliuC")),
+    person("Kristyn", "Chin", role = "aut",
+            comment = c("kristynchin-olink")),
+    person("Danai", "Topouza", role = "aut",
+            comment = c("dtopouza", ORCID = "0000-0002-6897-9281")),
+    person("Stephen", "Pollo", role = "aut",
+            comment = c("spollo-olprot", ORCID = "0000-0001-9252-4976")),
+    person("Kang", "Dong", role = "aut",
+            comment = c("KangD-dev", ORCID = "0000-0002-4567-5007")),
+    person("Kristian", "Hodén", role = "ctb",
+           comment = c(ORCID = "0000-0003-0354-0662", "kristianHoden")),
+    person("Per", "Eriksson", role = "ctb",
+           comment = c(ORCID = "0000-0001-7633-403X", "b_watcher")),
+    person("Nicola", "Moloney", role = "ctb",
+            comment = c(ORCID = "0000-0003-4967-3284")),
+    person("Britta", "Lötstedt", role = "ctb",
+            comment = c(ORCID = "0000-0003-3545-5489")),
+    person("Emmett", "Sprecher", role = "ctb",
+           comment = c(ORCID = "0000-0002-7710-695X")),
+    person("Jessica", "Barbagallo", role = "ctb",
+           comment = c("jbarbagallo")),
+    person("Olof", "Mansson", role = "ctr",
+           comment = c("olofmansson")),
+    person("Ola", "Caster", role = "ctb",
+           comment = c("OlaCaster")),
+    person("Olink", role = c("cph", "fnd"))
+  )
+Description: A collection of vignettes to exemplify analysis of proteomic
+    data from Olink, primarily NPX data that has been exported from Olink
+    Software. The functions also work on QUANT data from Olink by
+    log- transforming the QUANT data. The vignettes are focused
+    on reading data, demonstrating data wrangling and quality control
+    analysis, performing statistical analysis and generating figures to
+    visualize the results of the statistical analysis. The goal of this
+    package is to guide users extract biological insights from proteomic
+    data run on the Olink platform.
+Contact: biostattools@olink.com
+URL: https://olink.com/ https://github.com/Olink-Proteomics/OlinkRPackage https://github.com/Olink-Proteomics/OlinkAnalyzeVignettes
+License: AGPL (>= 3)
 Encoding: UTF-8
+LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
+Depends: R (>= 4.1.0)
+Imports: 
+    OlinkAnalyze
+Suggests: 
+    dplyr,
+    ggplot2,
+    ggpubr,
+    ggrepel,
+    kableExtra,
+    knitr,
+    stringr
+VignetteBuilder: 
+    knitr
