@@ -1,4 +1,4 @@
-#' Open the OlinkAnalyze GitHub repo page.
+#' Open the OlinkAnalyze GitHub repo page
 #'
 #' @export
 open_docs <- function() {
