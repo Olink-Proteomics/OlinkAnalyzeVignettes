@@ -46,23 +46,19 @@ jobs:
 
       - name: Document
         run: |
-          # capture output of roxygen2::roxygenise on OlinkAnalyzeVignettes
-          doc_output <- tryCatch(
+          old_warn <- getOption("warn")
+          options(warn = 2)
+          on.exit(options(warn = old_warn), add = TRUE)
+
+          tryCatch(
             {
-              capture.output(roxygen2::roxygenise(package.dir = "."), type = "message")
+              roxygen2::roxygenise(package.dir = ".")
             },
             error = function(e) {
-              message("Error: ", e$message)
+              message("Roxygen2 documentation failed: ", conditionMessage(e))
               quit(status = 1)
             }
           )
-
-          # Check for "✖" symbol in the output, which indicates an issue
-          if (any(grepl("✖", doc_output))) {
-            message("Roxygen2 found documentation issues:\n",
-                    paste(doc_output[grepl("✖", doc_output)], collapse = "\n"))
-            quit(status = 1)
-          }
         shell: Rscript {0}
 
       - name: Commit results
