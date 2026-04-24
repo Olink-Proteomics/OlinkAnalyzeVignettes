@@ -13,3 +13,4 @@
 ^\.Rhistory$
 ^\.positai$
 ^\.claude$
+^\.lintr$
