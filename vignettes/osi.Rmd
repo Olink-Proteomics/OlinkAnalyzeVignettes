@@ -216,9 +216,9 @@ new_osi <- team |>
         labels = 1L:4L,
         include.lowest = FALSE, # ensures (0, 0.25]
         right = TRUE # intervals are (a, b]
-      ) |> 
+      ) |>
         as.character()
-    ) |> 
+    ) |>
       as.factor()
   )
 
