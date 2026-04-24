@@ -120,7 +120,7 @@ outlier_data <- OlinkAnalyze::npx_data1 |>
     )
   )
 
-group_data <- npx_data1 |>
+group_data <- OlinkAnalyze::npx_data1 |>
   dplyr::mutate(
     NPX = dplyr::if_else(
       .data[["Site"]] == "Site_D",

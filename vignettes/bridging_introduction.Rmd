@@ -641,7 +641,7 @@ npx_br_data |>
 The distribution of CHL1 between projects is visualized for demonstration
 purposes.
 
-```{r voilin plot, fig.cap = f6}
+```{r violin_plot, fig.cap = f6}
 # Bridge sample data
 bridge_samples <- npx_1 |>
   dplyr::bind_rows(
@@ -828,7 +828,7 @@ npx_after_br <- npx_br_data |>
       paste(.data[["Project"]], "Sample")
     )
   ) |>
-  dplyr:::mutate(
+  dplyr::mutate(
     SampleID = paste0(.data[["Project"]],
                       .data[["PlateID"]],
                       .data[["SampleID"]])

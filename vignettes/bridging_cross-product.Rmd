@@ -463,7 +463,7 @@ npx_3072 <- data_explore3072 |>
 
 # perform between-product bridging without formatting for downstream analysis
 npx_br_data <- OlinkAnalyze::olink_normalization(
-  f1 = npx_ht,
+  df1 = npx_ht,
   df2 = npx_3072,
   overlapping_samples_df1 = overlapping_samples,
   df1_project_nr = "Reference Product",
@@ -801,7 +801,7 @@ npx_br_data |>
   dplyr::mutate(
     OlinkID = paste0(.data[["OlinkID"]], "_", .data[["OlinkID_E3072"]])
   ) |>
-  dplyr:::mutate(
+  dplyr::mutate(
     SampleID = paste0(.data[["Project"]], .data[["SampleID"]])
   ) |>
   OlinkAnalyze::olink_pca_plot(
@@ -826,12 +826,12 @@ npx_br_data |>
     .data[["SampleType"]] == "SAMPLE"
   ) |>
   dplyr::filter(
-    .data[["SampleID"]] %in% .enc[["overlapping_samples"]]
+    .data[["SampleID"]] %in% .env[["overlapping_samples"]]
   ) |>
   dplyr::mutate(
     OlinkID = paste0(.data[["OlinkID"]], "_", .data[["OlinkID_E3072"]])
   ) |>
-  dplyr:::mutate(
+  dplyr::mutate(
     SampleID = paste0(.data[["Project"]], .data[["SampleID"]])
   ) |>
   OlinkAnalyze::olink_pca_plot(
@@ -876,7 +876,7 @@ npx_after_br_reco <- npx_br_data |>
 ```{r pca_post_SC, eval = FALSE, echo = TRUE}
 ### Generate unique SampleIDs
 npx_after_br_final <- npx_after_br_reco |>
-  dplyr:::mutate(
+  dplyr::mutate(
     SampleID = paste0(.data[["Project"]], .data[["SampleID"]])
   )
 
@@ -908,7 +908,7 @@ npx_after_br_reco |>
   dplyr::filter(
     .data[["SampleID"]] %in% .env[["overlapping_samples"]]
   ) |>
-  dplyr:::mutate(
+  dplyr::mutate(
     SampleID = paste0(.data[["Project"]], .data[["SampleID"]])
   ) |>
   OlinkAnalyze::olink_pca_plot(
