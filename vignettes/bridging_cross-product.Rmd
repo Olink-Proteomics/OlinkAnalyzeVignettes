@@ -47,10 +47,11 @@ Explore 3072, Olink^®^ Explore HT, and Olink^®^ Reveal products.
 -   **Bridging samples** – Overlapping samples run on two or more projects
     that are used as references to enable normalization. These
     samples are selected as described in the 
-    *Introduction to Bridging tutorial* to ensure samples are of high quality
-    and span the range of the data. In the case of data containing LOD, samples
-    are also filtered for high detectability. Bridging samples are selected 
-    from the project that is run first to run with the second project.
+    [Introduction to Bridging tutorial](bridging_introduction.html) to ensure 
+    samples are of high quality and span the range of the data. In the case of
+    data containing LOD, samples are also filtered for high detectability. 
+    Bridging samples are selected from the project that is run first to run with
+    the second project.
 
 -   **Project** – A set of plates that run at the same time and have been
     normalized together. If two projects are not randomized or are run at
