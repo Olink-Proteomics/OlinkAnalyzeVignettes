@@ -61,10 +61,12 @@ Description: A collection of vignettes to exemplify analysis of proteomic
     package is to guide users extract biological insights from proteomic
     data run on the Olink platform.
 Contact: biostattools@olink.com
-URL: https://olink.com/ https://github.com/Olink-Proteomics/OlinkRPackage https://github.com/Olink-Proteomics/OlinkAnalyzeVignettes
+URL:
+    https://olink.com/,
+    https://github.com/Olink-Proteomics/OlinkRPackage/,
+    https://github.com/Olink-Proteomics/OlinkAnalyzeVignettes/
 License: AGPL (>= 3)
 Encoding: UTF-8
-LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
 Depends: R (>= 4.1.0)
