@@ -941,7 +941,7 @@ df$metadata$FileVersion <- "NA"
 df$metadata$ExploreVersion <- "NA"
 df$metadata$ProjectName <- "NA"
 df$metadata$SampleMatrix <- "NA"
-df$metadata$DataFileType <- "Olink Analyze Export File"
+df$metadata$DataFileType <- "R Package Export File"
 df$metadata$ProductType <- "Explore3072"
 df$metadata$Product <- "Explore3072"
 
