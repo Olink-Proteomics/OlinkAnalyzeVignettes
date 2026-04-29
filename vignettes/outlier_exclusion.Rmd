@@ -263,6 +263,8 @@ npx_data1_clean |>
     color_g = "Treatment",
     check_log = check_log_npx_data1_clean
   )
+
+# ADD PLOT HERE
 ```
 
 In this dataset there do not appear to be any outliers in the PCA plot.
@@ -604,8 +606,12 @@ However, we can see many other samples approaching the line threshold line
 that this sample may not be a true outlier.
 
 ```{r, eval = FALSE}
+if (requireNamespace(package = "ggrepel", quietly = TRUE)) {
 outlier_data |>
-  OlinkAnalyze::olink_qc_plot(check_log = check_log_npx_data1_clean)
+  OlinkAnalyze::olink_qc_plot(
+    check_log = check_log_npx_data1_clean,
+    label_outliers = TRUE)
+}
 ```
 
 ```{r, echo=FALSE}
