@@ -50,8 +50,32 @@ knitr::opts_chunk$set(fig.pos = "H")
 knitr::opts_chunk$set(fig.align = "center")
 knitr::opts_knit$set(eval.after = "fig.cap")
 
+# Use provided example dataset (npx_data1)
+
+npx_data1 <- OlinkAnalyze::npx_data1 
+
+# NPX file preprocessing
+
+## Generate check log
+
+check_log_npx_data1 <- OlinkAnalyze::check_npx(
+  df = npx_data1
+)
+
+## Clean NPX
+
+npx_data1_clean <- OlinkAnalyze::clean_npx(
+  df = npx_data1
+)
+
+## Generate check log on cleaned data
+
+check_log_npx_data1_clean <- OlinkAnalyze::check_npx(
+  df = npx_data1_clean
+)
+
 # Create Dataset with outliers
-outlier_data <- OlinkAnalyze::npx_data1 |>
+outlier_data <- npx_data1_clean |>
   dplyr::mutate(
     NPX = dplyr::if_else(
       .data[["SampleID"]] == "A25",
@@ -65,39 +89,52 @@ outlier_data <- OlinkAnalyze::npx_data1 |>
       .data[["NPX"]] - 4,
       .data[["NPX"]]
     )
-  ) |>
-  dplyr::filter(
-    stringr::str_detect(
-      string = .data[["SampleID"]],
-      pattern = "CONTROL",
-      negate = TRUE
-    )
   )
 
-group_data <- OlinkAnalyze::npx_data1 |>
+group_data <- npx_data1_clean |>
   dplyr::mutate(
     NPX = dplyr::if_else(
       .data[["Site"]] == "Site_D",
       .data[["NPX"]] + 3,
       .data[["NPX"]]
     )
-  ) |>
-  dplyr::filter(
-    stringr::str_detect(
-      string = .data[["SampleID"]],
-      pattern = "CONTROL",
-      negate = TRUE
-    )
-  )
+  ) 
 ```
+
 
 For demonstration purposes two outlier datasets have been generated to
 demonstrate large outlier effects by adjusting the NPX values for specific
 Samples or groups.
 
 ```{r dataset_generation, eval = FALSE, message = FALSE, warning = FALSE}
-# Create Datasets with outliers
-outlier_data <- OlinkAnalyze::npx_data1 |>
+
+# Use provided example dataset (npx_data1)
+
+npx_data1 <- OlinkAnalyze::npx_data1 
+
+# NPX file preprocessing
+
+## Generate check log
+
+check_log_npx_data1 <- OlinkAnalyze::check_npx(
+  df = npx_data1
+)
+
+## Clean NPX
+
+npx_data1_clean <- OlinkAnalyze::clean_npx(
+  df = npx_data1
+)
+
+## Generate check log on cleaned data
+
+check_log_npx_data1_clean <- OlinkAnalyze::check_npx(
+  df = npx_data1_clean
+)
+
+# Create Dataset with outliers
+
+outlier_data <- npx_data1_clean |>
   dplyr::mutate(
     NPX = dplyr::if_else(
       .data[["SampleID"]] == "A25",
@@ -111,30 +148,16 @@ outlier_data <- OlinkAnalyze::npx_data1 |>
       .data[["NPX"]] - 4,
       .data[["NPX"]]
     )
-  ) |>
-  dplyr::filter(
-    stringr::str_detect(
-      string = .data[["SampleID"]],
-      pattern = "CONTROL",
-      negate = TRUE
-    )
   )
 
-group_data <- OlinkAnalyze::npx_data1 |>
+group_data <- npx_data1_clean |>
   dplyr::mutate(
     NPX = dplyr::if_else(
       .data[["Site"]] == "Site_D",
       .data[["NPX"]] + 3,
       .data[["NPX"]]
     )
-  ) |>
-  dplyr::filter(
-    stringr::str_detect(
-      string = .data[["SampleID"]],
-      pattern = "CONTROL",
-      negate = TRUE
-    )
-  )
+  ) 
 ```
 
 ## PCA Plot
@@ -163,16 +186,21 @@ These samples are not necessarily outliers but might be indicative of a global
 difference between groups.
 
 ```{r Outlier_example_code, eval = FALSE}
+
 p1 <- outlier_data |>
   OlinkAnalyze::olink_pca_plot(
     label_samples = TRUE,
-    quiet = TRUE
+    quiet = TRUE,
+    check_log = check_log_npx_data1_clean
   )
+
 p2 <- group_data |>
   OlinkAnalyze::olink_pca_plot(
     color_g = "Site",
-    quiet = TRUE
+    quiet = TRUE,
+    check_log = check_log_npx_data1_clean
   )
+
 ggpubr::ggarrange(
   p1[[1L]],
   p2[[1L]],
@@ -188,6 +216,7 @@ knitr::include_graphics(
   ),
   error = FALSE
 )
+
 fcap <- paste("**Figure 1** **A.** PCA can be used to identify individual",
               "outlier samples as shown by samples A25 and A52. **B.** PCA can",
               "be used to identify difference in groups as seen by Site_D",
@@ -227,17 +256,10 @@ by QC_Warning. Prior to generating the PCA plot, the duplicate SampleIDs (often
 Control samples) will need to be renamed or filtered out.
 
 ```{r PCA_treatment, eval = FALSE}
-OlinkAnalyze::npx_data1 |>
-  # Filter duplicate SampleIDs
-  dplyr::filter(
-    stringr::str_detect(
-      string = .data[["SampleID"]],
-      pattern = "CONTROL",
-      negate = TRUE
-    )
-  ) |>
+npx_data1_clean |>
   OlinkAnalyze::olink_pca_plot(
-    color_g = "Treatment"
+    color_g = "Treatment",
+    check_log = check_log_npx_data1_clean
   )
 ```
 
@@ -250,18 +272,35 @@ one panel. To get a global view of the samples per Panel, the `byPanel` argument
 can be specified.
 
 ```{r PCA_Panel, eval = FALSE}
-OlinkAnalyze::npx_data2 |>
-  # Filter out control SampleIDs
-  dplyr::filter(
-    stringr::str_detect(
-      string = .data[["SampleID"]],
-      pattern = "CONTROL",
-      negate = TRUE
-    )
-  ) |>
+# Use provided example dataset (npx_data2)
+
+npx_data2 <- OlinkAnalyze::npx_data2 
+
+# NPX file preprocessing
+
+## Generate check log
+
+check_log_npx_data2 <- OlinkAnalyze::check_npx(
+  df = npx_data2
+)
+
+## Clean NPX
+
+npx_data2_clean <- OlinkAnalyze::clean_npx(
+  df = npx_data2
+)
+
+## Generate check log on cleaned data
+
+check_log_npx_data2_clean <- OlinkAnalyze::check_npx(
+  df = npx_data2_clean
+)
+
+npx_data2_clean |>
   # Specify by panel
   OlinkAnalyze::olink_pca_plot(
-    byPanel = TRUE
+    byPanel = TRUE,
+    check_log = check_log_npx_data2_clean
   )
 ```
 
@@ -279,20 +318,13 @@ individually using `[[n]]` syntax as shown below.
 
 ```{r PCA_object, eval = FALSE}
 # Save the PCA plot to a variable
-pca_plots <- OlinkAnalyze::npx_data2 |>
-  # Filter duplicate SampleIDs
-  dplyr::filter(
-    stringr::str_detect(
-      string = .data[["SampleID"]],
-      pattern = "CONTROL",
-      negate = TRUE
-    )
-  ) |>
+pca_plots <- npx_data2_clean |>
   # By panel
   # quiet argument suppresses export
   OlinkAnalyze::olink_pca_plot(
     byPanel = TRUE,
-    quiet = TRUE
+    quiet = TRUE,
+    check_log = check_log_npx_data2_clean
   )
 
 pca_plots[[1L]] # Cardiometabolic PCA
@@ -323,16 +355,9 @@ the dot with the SampleID.
 
 ```{r, eval = FALSE}
 outlier_data |>
-  # Filter duplicate SampleIDs
-  dplyr::filter(
-    stringr::str_detect(
-      string = .data[["SampleID"]],
-      pattern = "CONTROL",
-      negate = TRUE
-    )
-  ) |>
   OlinkAnalyze::olink_pca_plot(
-    label_samples = TRUE
+    label_samples = TRUE,
+    check_log = check_log_npx_data1_clean
   )
 ```
 
@@ -359,19 +384,12 @@ outliers.
 
 ```{r, eval = FALSE}
 outlier_data |>
-  # Filter duplicate SampleIDs
-  dplyr::filter(
-    stringr::str_detect(
-      string = .data[["SampleID"]],
-      pattern = "CONTROL",
-      negate = TRUE
-    )
-  ) |>
   OlinkAnalyze::olink_pca_plot(
     outlierDefX = 3L,
     outlierDefY = 3L,
     outlierLines = TRUE,
-    label_outliers = TRUE
+    label_outliers = TRUE,
+    check_log = check_log_npx_data1_clean
   )
 ```
 
@@ -389,19 +407,12 @@ set to False.
 
 ```{r, eval = FALSE}
 outlier_data |>
-  # Filter duplicate SampleIDs
-  dplyr::filter(
-    stringr::str_detect(
-      string = .data[["SampleID"]],
-      pattern = "CONTROL",
-      negate = TRUE
-    )
-  ) |>
   OlinkAnalyze::olink_pca_plot(
     outlierDefX = 3L,
     outlierDefY = 3L,
     outlierLines = FALSE,
-    label_outliers = TRUE
+    label_outliers = TRUE,
+    check_log = check_log_npx_data1_clean
   )
 ```
 
@@ -411,20 +422,13 @@ programmatically extract the outlier SampleIDs using *dplyr*.
 ```{r}
 if (requireNamespace(package = "ggrepel", quietly = TRUE)) {
   outliers_pca_labeled <- outlier_data |>
-    # Filter duplicate SampleIDs
-    dplyr::filter(
-      stringr::str_detect(
-        string = .data[["SampleID"]],
-        pattern = "CONTROL",
-        negate = TRUE
-      )
-    ) |>
     OlinkAnalyze::olink_pca_plot(
       outlierDefX = 3L,
       outlierDefY = 3L,
       outlierLines = FALSE,
       label_outliers = TRUE,
-      quiet = TRUE
+      quiet = TRUE,
+      check_log = check_log_npx_data1_clean
     )
 
   outliers_pca_labeled[[1L]]$data |>
@@ -476,7 +480,7 @@ outlier_data |>
     .data[["SampleID"]] %in% c("A25", "A52", "A1", "A2", "A3", "A5",
                                "A15", "A16", "A18", "A19", "A20")
   ) |>
-  OlinkAnalyze::olink_dist_plot()
+  OlinkAnalyze::olink_dist_plot(check_log = check_log_npx_data1_clean)
 ```
 
 ```{r, echo = FALSE}
@@ -499,7 +503,8 @@ group_data |>
     .data[["Site"]] %in% c("Site_A", "Site_D")
   ) |>
   OlinkAnalyze::olink_dist_plot(
-    color_g = "Site"
+    color_g = "Site",
+    check_log = check_log_npx_data1_clean
   )
 ```
 
@@ -547,7 +552,8 @@ adjusted_data |>
     .data[["Site"]] %in% c("Site_A", "Site_D")
   ) |>
   OlinkAnalyze::olink_dist_plot(
-    color_g = "Site"
+    color_g = "Site",
+    check_log = check_log_npx_data1_clean
   )
 ```
 
@@ -597,7 +603,7 @@ that this sample may not be a true outlier.
 
 ```{r, eval = FALSE}
 outlier_data |>
-  OlinkAnalyze::olink_qc_plot()
+  OlinkAnalyze::olink_qc_plot(check_log = check_log_npx_data1_clean)
 ```
 
 ```{r, echo=FALSE}
@@ -624,7 +630,8 @@ sample median.
 ```{r, eval = FALSE}
 group_data |>
   OlinkAnalyze::olink_qc_plot(
-    color_g = "Site"
+    color_g = "Site",
+    check_log = check_log_npx_data1_clean
   )
 ```
 
@@ -653,7 +660,8 @@ outlier_data |>
     median_outlierDef = 2L,
     IQR_outlierDef = 4L,
     outlierLines = TRUE,
-    label_outliers = TRUE
+    label_outliers = TRUE,
+    check_log = check_log_npx_data1_clean
   )
 ```
 
@@ -675,7 +683,8 @@ outlier_data |>
     median_outlierDef = 2L,
     IQR_outlierDef = 4L,
     outlierLines = FALSE,
-    label_outliers = TRUE
+    label_outliers = TRUE,
+    check_log = check_log_npx_data1_clean
   )
 ```
 
@@ -689,7 +698,8 @@ if (requireNamespace(package = "ggrepel", quietly = TRUE)) {
       median_outlierDef = 2L,
       IQR_outlierDef = 4,
       outlierLines = FALSE,
-      label_outliers = TRUE
+      label_outliers = TRUE,
+      check_log = check_log_npx_data1_clean
     )
 
   outliers_qc_labeled$data |>
