@@ -51,25 +51,21 @@ knitr::opts_chunk$set(fig.align = "center")
 knitr::opts_knit$set(eval.after = "fig.cap")
 
 # Use provided example dataset (npx_data1)
-
 npx_data1 <- OlinkAnalyze::npx_data1 
 
 # NPX file preprocessing
 
-## Generate check log
-
+# Generate check log
 check_log_npx_data1 <- OlinkAnalyze::check_npx(
   df = npx_data1
 )
 
-## Clean NPX
-
+# Clean NPX
 npx_data1_clean <- OlinkAnalyze::clean_npx(
   df = npx_data1
 )
 
-## Generate check log on cleaned data
-
+# Generate check log on cleaned data
 check_log_npx_data1_clean <- OlinkAnalyze::check_npx(
   df = npx_data1_clean
 )
@@ -115,26 +111,22 @@ npx_data1 <- OlinkAnalyze::npx_data1
 
 # NPX file preprocessing
 
-## Generate check log
-
+# Generate check log
 check_log_npx_data1 <- OlinkAnalyze::check_npx(
   df = npx_data1
 )
 
-## Clean NPX
-
+# Clean NPX
 npx_data1_clean <- OlinkAnalyze::clean_npx(
   df = npx_data1
 )
 
-## Generate check log on cleaned data
-
+# Generate check log on cleaned data
 check_log_npx_data1_clean <- OlinkAnalyze::check_npx(
   df = npx_data1_clean
 )
 
 # Create Dataset with outliers
-
 outlier_data <- npx_data1_clean |>
   dplyr::mutate(
     NPX = dplyr::if_else(
@@ -187,7 +179,6 @@ These samples are not necessarily outliers but might be indicative of a global
 difference between groups.
 
 ```{r Outlier_example_code, eval = FALSE, fig.show='hide'}
-
 p1 <- outlier_data |>
   OlinkAnalyze::olink_pca_plot(
     label_samples = TRUE,
@@ -281,20 +272,17 @@ npx_data2 <- OlinkAnalyze::npx_data2
 
 # NPX file preprocessing
 
-## Generate check log
-
+# Generate check log
 check_log_npx_data2 <- OlinkAnalyze::check_npx(
   df = npx_data2
 )
 
-## Clean NPX
-
+# Clean NPX
 npx_data2_clean <- OlinkAnalyze::clean_npx(
   df = npx_data2
 )
 
-## Generate check log on cleaned data
-
+# Generate check log on cleaned data
 check_log_npx_data2_clean <- OlinkAnalyze::check_npx(
   df = npx_data2_clean
 )
@@ -386,6 +374,7 @@ require some manual adjustment to determine the correct number to highlight the
 outliers.
 
 ```{r, eval = FALSE}
+if (requireNamespace(package = "ggrepel", quietly = TRUE)) {
 outlier_data |>
   OlinkAnalyze::olink_pca_plot(
     outlierDefX = 3L,
@@ -394,6 +383,7 @@ outlier_data |>
     label_outliers = TRUE,
     check_log = check_log_npx_data1_clean
   )
+}
 ```
 
 ```{r outlier_line_pca, echo = FALSE}
@@ -409,6 +399,7 @@ To remove the lines and just keep the outliers labelled, `outlierLines` can be
 set to False.
 
 ```{r, eval = FALSE}
+if (requireNamespace(package = "ggrepel", quietly = TRUE)) {
 outlier_data |>
   OlinkAnalyze::olink_pca_plot(
     outlierDefX = 3L,
@@ -417,6 +408,7 @@ outlier_data |>
     label_outliers = TRUE,
     check_log = check_log_npx_data1_clean
   )
+}
 ```
 
 Once the correct outliers have been highlighted in the graph, we can then
