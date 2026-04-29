@@ -11,7 +11,9 @@ A collection of vignettes to exemplify analysis of proteomic data from Olink, pr
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://olink.com/ https://github.com/Olink-Proteomics/OlinkRPackage https://github.com/Olink-Proteomics/OlinkAnalyzeVignettes}
+  \item \url{https://olink.com/}
+  \item \url{https://github.com/Olink-Proteomics/OlinkRPackage/}
+  \item \url{https://github.com/Olink-Proteomics/OlinkAnalyzeVignettes/}
 }
 
 }
