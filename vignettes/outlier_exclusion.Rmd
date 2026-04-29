@@ -636,11 +636,14 @@ samples are colored by site and Site D appears to have samples with higher
 sample median. 
 
 ```{r, eval = FALSE}
+if (requireNamespace(package = "ggrepel", quietly = TRUE)) {
 group_data |>
   OlinkAnalyze::olink_qc_plot(
     color_g = "Site",
+    label_outliers = TRUE,
     check_log = check_log_npx_data1_clean
   )
+}
 ```
 
 ```{r echo = FALSE}
@@ -663,6 +666,7 @@ some manual adjustment to determine the correct number to highlight the
 outliers.
 
 ```{r, eval = FALSE}
+if (requireNamespace(package = "ggrepel", quietly = TRUE)) {
 outlier_data |>
   OlinkAnalyze::olink_qc_plot(
     median_outlierDef = 2L,
@@ -671,6 +675,7 @@ outlier_data |>
     label_outliers = TRUE,
     check_log = check_log_npx_data1_clean
   )
+}
 ```
 
 ```{r, echo = FALSE}
@@ -686,6 +691,7 @@ To remove the lines and just keep the outliers labelled `outlierLines` can be
 set to False.
 
 ```{r, eval = FALSE}
+if (requireNamespace(package = "ggrepel", quietly = TRUE)) {
 outlier_data |>
   OlinkAnalyze::olink_qc_plot(
     median_outlierDef = 2L,
@@ -694,6 +700,7 @@ outlier_data |>
     label_outliers = TRUE,
     check_log = check_log_npx_data1_clean
   )
+}
 ```
 
 Once the correct outliers have been highlighted in the graph, we can then
