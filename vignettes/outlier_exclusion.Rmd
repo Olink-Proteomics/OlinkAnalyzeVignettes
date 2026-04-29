@@ -254,9 +254,16 @@ npx_data1_clean |>
     check_log = check_log_npx_data1_clean
   )
 
-# ADD PLOT HERE
 ```
 
+```{r PCA_treatment_fig, echo = FALSE}
+knitr::include_graphics(
+  path = normalizePath(
+    path = "../man/figures/PCA_Treatment.png"
+  ),
+  error = FALSE
+)
+```
 In this dataset there do not appear to be any outliers in the PCA plot.
 
 ### PCA plot by panel
