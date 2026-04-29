@@ -99,6 +99,8 @@ group_data <- npx_data1_clean |>
       .data[["NPX"]]
     )
   ) 
+
+rm(check_log_npx_data1, npx_data1)
 ```
 
 
@@ -185,7 +187,7 @@ an overview of the data prior to analysis and pick up on any global trends.
 These samples are not necessarily outliers but might be indicative of a global
 difference between groups.
 
-```{r Outlier_example_code, eval = FALSE}
+```{r Outlier_example_code, eval = FALSE, fig.show='hide'}
 
 p1 <- outlier_data |>
   OlinkAnalyze::olink_pca_plot(
@@ -204,7 +206,7 @@ p2 <- group_data |>
 ggpubr::ggarrange(
   p1[[1L]],
   p2[[1L]],
-  nrow = 2L,
+  nrow = 1L,
   labels = "AUTO"
 )
 ```
