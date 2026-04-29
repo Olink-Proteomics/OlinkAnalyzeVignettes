@@ -109,7 +109,6 @@ demonstrate large outlier effects by adjusting the NPX values for specific
 Samples or groups.
 
 ```{r dataset_generation, eval = FALSE, message = FALSE, warning = FALSE}
-
 # Use provided example dataset (npx_data1)
 
 npx_data1 <- OlinkAnalyze::npx_data1 
@@ -484,7 +483,9 @@ outlier_data |>
     .data[["SampleID"]] %in% c("A25", "A52", "A1", "A2", "A3", "A5",
                                "A15", "A16", "A18", "A19", "A20")
   ) |>
-  OlinkAnalyze::olink_dist_plot(check_log = check_log_npx_data1_clean)
+  OlinkAnalyze::olink_dist_plot(
+    check_log = check_log_npx_data1_clean
+    )
 ```
 
 ```{r, echo = FALSE}
@@ -609,8 +610,8 @@ that this sample may not be a true outlier.
 if (requireNamespace(package = "ggrepel", quietly = TRUE)) {
 outlier_data |>
   OlinkAnalyze::olink_qc_plot(
-    check_log = check_log_npx_data1_clean,
-    label_outliers = TRUE)
+    label_outliers = TRUE,
+    check_log = check_log_npx_data1_clean)
 }
 ```
 
