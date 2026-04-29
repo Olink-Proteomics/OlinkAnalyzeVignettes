@@ -51,7 +51,7 @@ knitr::opts_chunk$set(fig.align = "center")
 knitr::opts_knit$set(eval.after = "fig.cap")
 
 # Use provided example dataset (npx_data1)
-npx_data1 <- OlinkAnalyze::npx_data1 
+npx_data1 <- OlinkAnalyze::npx_data1
 
 # NPX file preprocessing
 
@@ -94,7 +94,7 @@ group_data <- npx_data1_clean |>
       .data[["NPX"]] + 3,
       .data[["NPX"]]
     )
-  ) 
+  )
 
 rm(check_log_npx_data1, npx_data1)
 ```
@@ -107,7 +107,7 @@ Samples or groups.
 ```{r dataset_generation, eval = FALSE, message = FALSE, warning = FALSE}
 # Use provided example dataset (npx_data1)
 
-npx_data1 <- OlinkAnalyze::npx_data1 
+npx_data1 <- OlinkAnalyze::npx_data1
 
 # NPX file preprocessing
 
@@ -150,7 +150,7 @@ group_data <- npx_data1_clean |>
       .data[["NPX"]] + 3,
       .data[["NPX"]]
     )
-  ) 
+  )
 ```
 
 ## PCA Plot
@@ -275,7 +275,7 @@ can be specified.
 ```{r PCA_Panel, eval = FALSE}
 # Use provided example dataset (npx_data2)
 
-npx_data2 <- OlinkAnalyze::npx_data2 
+npx_data2 <- OlinkAnalyze::npx_data2
 
 # NPX file preprocessing
 
