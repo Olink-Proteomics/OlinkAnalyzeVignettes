@@ -395,6 +395,22 @@ explore_npx_nc_lod <- explore_npx |>
     lod_method = "NCLOD"
   )
 
+# NPX file preprocessing
+## Generate check log
+check_log_npx_data1 <- OlinkAnalyze::check_npx(
+  df = npx_data1
+)
+
+## Clean NPX
+npx_data1_clean <- OlinkAnalyze::clean_npx(
+  df = npx_data1
+)
+
+## Generate check log on cleaned data
+check_log_npx_data1_clean <- OlinkAnalyze::check_npx(
+  df = npx_data1_clean
+)
+
 # Add metadata for export
 df <- explore_npx_nc_lod |>
   arrow::as_arrow_table()
