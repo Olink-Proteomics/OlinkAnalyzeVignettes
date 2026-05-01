@@ -467,7 +467,7 @@ check_npx_nc_lod_clean <- OlinkAnalyze::check_npx(
 )
 
 # Add metadata for export
-df <- check_npx_nc_lod_clean |>
+df <- npx_nc_lod_clean |>
   arrow::as_arrow_table()
 
 df$metadata$FileVersion <- "NA"
