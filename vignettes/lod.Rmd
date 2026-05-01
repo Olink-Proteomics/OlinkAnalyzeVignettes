@@ -81,27 +81,7 @@ and intensity normalization are shown in the tables below.
 
 ```{r, echo = FALSE}
 set.seed(1234)
-
-# Use provided example dataset (npx_data1)
-npx_data1 <- OlinkAnalyze::npx_data1
-
-# NPX file preprocessing
-## Generate check log
-check_log_npx_data1 <- OlinkAnalyze::check_npx(
-  df = npx_data1
-)
-
-## Clean NPX
-npx_data1_clean <- OlinkAnalyze::clean_npx(
-  df = npx_data1
-)
-
-## Generate check log on cleaned data
-check_log_npx_data1_clean <- OlinkAnalyze::check_npx(
-  df = npx_data1_clean
-)
-
-table1 <- npx_data1_clean |>
+table1 <- OlinkAnalyze::npx_data1 |>
   dplyr::slice_head(
     n = 6L
   ) |>
