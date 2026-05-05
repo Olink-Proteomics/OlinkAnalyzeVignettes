@@ -66,7 +66,7 @@ dataset's negative controls or a list of predetermined fixed LOD values
 [olink.com](https://olink.com/knowledge/documents)). As the default setting,
 `olink_lod()` will calculate LOD using a dataset's negative controls.
 
-Olink Explore and Reveal data are delivered as either plate control (PC) 
+Olink Explore and Olink Reveal data are delivered as either plate control (PC) 
 normalized or intensity normalized (the normalization type employed is 
 indicated in the NPX file column Normalization), where the latter is dependent 
 on the assumption that the analyzed samples are randomized. These are reported 
