@@ -2,20 +2,20 @@
 title: "Plate Randomization Vignette"
 author: "Olink DS team"
 date: "`r Sys.Date()`"
-output: 
+output:
   html_vignette:
     toc: true
     toc_depth: 3
     includes:
       in_header: ../man/figures/logo.html
-    
+
 vignette: >
   %\VignetteIndexEntry{Plate Randomization Vignette}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include = FALSE} 
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(warning = FALSE,
                       fig.height = 6,
                       fig.width = 6,
@@ -48,7 +48,7 @@ evaluate the performed randomization based on a given grouping variable.
 
 The input manifest should be a tibble/data frame in long format containing all
 sample ID's. Sample ID column must be named SampleID. An example manifest is
-shown in Table 1. 
+shown in Table 1.
 
 ```{r manifest, echo = FALSE, message = FALSE}
 OlinkAnalyze::manifest |>
@@ -71,7 +71,7 @@ OlinkAnalyze::manifest |>
 
 The simplest way to randomize the samples is to perform complete randomization.
 
-```{r complete_randomization, message = FALSE, warning = FALSE,results = 'hide'}
+```{r complete_randomization, message = FALSE, warning = FALSE, results = 'hide'}
 randomized_manifest <- OlinkAnalyze::olink_plate_randomizer(
   Manifest = OlinkAnalyze::manifest,
   seed = 123456
@@ -87,7 +87,7 @@ remaining experimental variables of interest are evenly distributed across
 plates. This could be achieved by using the `SubjectColumn` argument. The
 `SubjectColumn` argument must correspond to a column within the manifest and
 cannot be SampleID. If `SubjectColumn` is specified, every SampleID must have a
-value in the subject column, even if there is only 1 sample for that subject. 
+value in the subject column, even if there is only 1 sample for that subject.
 
 However, if there are to many samples per subject (>8), complete randomization
 is recommended. The plate size can be either directly set to 48 or 96 using the `PlateSize`
@@ -97,7 +97,7 @@ external controls can be set using the `num_ctrl` argument, which defaults to 8
 controls. The Olink external controls can also be set to be randomized
 throughout the plate using the `rand_ctrl` argument.
 
-```{r randomize_subject, message = FALSE, eval = TRUE, echo=TRUE}
+```{r randomize_subject, message = FALSE, eval = TRUE, echo = TRUE}
 randomized_manifest_subject <- OlinkAnalyze::olink_plate_randomizer(
   Manifest = OlinkAnalyze::manifest,
   Product = "Explore HT",
@@ -107,7 +107,7 @@ randomized_manifest_subject <- OlinkAnalyze::olink_plate_randomizer(
 ```
 
 
-```{r randomize_controls, message = FALSE, eval = FALSE, echo=TRUE}
+```{r randomize_controls, message = FALSE, eval = FALSE, echo = TRUE}
 randomized_manifest_random <- OlinkAnalyze::olink_plate_randomizer(
   Manifest = OlinkAnalyze::manifest,
   Product = "Explore HT",
@@ -139,7 +139,7 @@ The number of samples on each plate could be specified via the
 `available.spots` argument. For example, the following code will lead to 48
 samples on the first and the second plate, and 42 samples on the third plates.
 The number of iterations for fitting subjects on the same plate can be set by
-the `iterations` argument. 
+the `iterations` argument.
 
 ```{r subjects_randomization, message = FALSE, results = 'hide'}
 randomized_manifest_SampleNO. <- OlinkAnalyze::olink_plate_randomizer(
@@ -181,10 +181,22 @@ of the plate and specifying the color for the variable of interest using the
 via the `include.label` argument.
 
 ```{r figure_captions, message = FALSE, echo = FALSE}
-fcap1 <- "Figure 1. Randomized samples in 96 well plate format, colored by Subject ID."
-fcap2 <- "Figure 2. Randomized samples in 96 well plate format with labeled wells."
-fcap3 <- "Figure 3. Randomized samples in a 96-well plate format, with the number of samples per plate pre-defined."
-fcap4 <- "Figure 4. Randomized samples in 96 well plate format, colored by Studies."
+fcap1 <- paste0(
+  "Figure 1. Randomized samples in 96 well plate format, ",
+  "colored by Subject ID."
+)
+fcap2 <- paste0(
+  "Figure 2. Randomized samples in 96 well plate format ",
+  "with labeled wells."
+)
+fcap3 <- paste0(
+  "Figure 3. Randomized samples in a 96-well plate format, ",
+  "with the number of samples per plate pre-defined."
+)
+fcap4 <- paste0(
+  "Figure 4. Randomized samples in 96 well plate format, ",
+  "colored by Studies."
+)
 fcap5 <- "Figure 5. Distribution of Subject ID across randomized plates."
 fcap6 <- "Figure 6. Distribution of Site across randomized plates."
 ```
@@ -229,7 +241,7 @@ OlinkAnalyze::olink_displayPlateLayout(
 The distribution of the given grouping variable on each plate could be
 visualized via a bar chart using function `olink_displayPlateDistributions`. By
 setting `fill.color = 'SubjectID'`, we could make sure all the samples from the
-same subject were put on the same plate. 
+same subject were put on the same plate.
 
 ```{r, fig.align = "center", fig.cap = fcap5}
 OlinkAnalyze::olink_displayPlateDistributions(
@@ -239,8 +251,8 @@ OlinkAnalyze::olink_displayPlateDistributions(
 ```
 
 We could also check the distribution of other variables. For examples, the
-distribution of the variable `Site` could be visualized by setting 
-`fill.color = 'Site'`. 
+distribution of the variable `Site` could be visualized by setting
+`fill.color = 'Site'`.
 
 ```{r, fig.align = "center", fig.cap= fcap6}
 OlinkAnalyze::olink_displayPlateDistributions(
@@ -250,7 +262,7 @@ OlinkAnalyze::olink_displayPlateDistributions(
 ```
 
 In the case of the randomization is not performed well, the randomization could
-be performed again with different seed number and iterations number. 
+be performed again with different seed number and iterations number.
 
 ## Data Output
 
