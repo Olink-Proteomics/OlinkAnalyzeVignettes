@@ -40,7 +40,7 @@ Reveal data in downstream analyses, LOD information can be useful when
 performing technical evaluations of a dataset.
 
 In this tutorial, you will learn how to use `olink_lod()` to add LOD information
-to your Olink Explore or Reveal dataset. Note that Olink Analyze does not 
+to your Olink Explore or Olink Reveal dataset. Note that Olink Analyze does not 
 contain example Olink Explore HT, Olink Reveal, or Olink Explore 384/3072 
 datasets within the package, so external data will be necessary for the code 
 below to work. The external data should contain internal and external controls 
