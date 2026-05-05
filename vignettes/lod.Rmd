@@ -59,12 +59,12 @@ downstream analyses such as biomarker discovery as a protein may be well
 expressed in one group and not measured in another group. In this case, this
 protein can be a strong biomarker candidate for specific groups.
 
-LOD can be added to Olink Explore or Reveal NPX datasets using `olink_lod()`. 
-This function can calculate LOD from an NPX dataset using the dataset's negative
-controls or a list of predetermined fixed LOD values (available in the Document
-Download Center at [olink.com](https://olink.com/knowledge/documents)). As the
-default setting, `olink_lod()` will calculate LOD using a dataset's negative
-controls.
+LOD can be added to Olink Explore or Olink Reveal NPX datasets using
+`olink_lod()`. This function can calculate LOD from an NPX dataset using the
+dataset's negative controls or a list of predetermined fixed LOD values
+(available in the Document Download Center at
+[olink.com](https://olink.com/knowledge/documents)). As the default setting,
+`olink_lod()` will calculate LOD using a dataset's negative controls.
 
 Olink Explore and Reveal data are delivered as either plate control (PC) 
 normalized or intensity normalized (the normalization type employed is 
