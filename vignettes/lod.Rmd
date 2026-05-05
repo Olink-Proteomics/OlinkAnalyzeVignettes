@@ -35,7 +35,7 @@ knitr::opts_chunk$set(
 
 This tutorial describes how to use Olink^®^ Analyze to integrate Limit of
 Detection (LOD) into Olink^®^ Explore HT, Olink^®^ Reveal, and Olink^®^ Explore
-384/3072 datasets. Although it is recommended to use all Olink Explore and 
+384/3072 datasets. Although it is recommended to use all Olink Explore and Olink
 Reveal data in downstream analyses, LOD information can be useful when 
 performing technical evaluations of a dataset.
 
