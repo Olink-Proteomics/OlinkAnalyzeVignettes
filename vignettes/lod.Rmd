@@ -94,7 +94,8 @@ check_log_npx_data1 <- OlinkAnalyze::check_npx(
 
 ## Clean NPX
 npx_data1_clean <- OlinkAnalyze::clean_npx(
-  df = npx_data1
+  df = npx_data1,
+  check_log = check_log_npx_data1
 )
 
 ## Generate check log on cleaned data
