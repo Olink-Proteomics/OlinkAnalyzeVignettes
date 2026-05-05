@@ -142,7 +142,7 @@ The number of iterations for fitting subjects on the same plate can be set by
 the `iterations` argument.
 
 ```{r subjects_randomization, message = FALSE, results = 'hide'}
-randomized_manifest_SampleNO. <- OlinkAnalyze::olink_plate_randomizer(
+randomized_manifest_num <- OlinkAnalyze::olink_plate_randomizer(
   Manifest = OlinkAnalyze::manifest,
   SubjectColumn = "SubjectID",
   available.spots = c(48L, 48L, 42L),
@@ -222,7 +222,7 @@ OlinkAnalyze::olink_displayPlateLayout(
 
 ```{r, fig.height = 6, fig.width = 7.5, fig.align = "center", fig.cap = fcap3}
 OlinkAnalyze::olink_displayPlateLayout(
-  data = randomized_manifest_SampleNO.,
+  data = randomized_manifest_num,
   fill.color = "SubjectID",
   include.label = FALSE
 )
