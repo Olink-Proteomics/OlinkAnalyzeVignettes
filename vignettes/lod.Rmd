@@ -210,9 +210,9 @@ information on `clean_npx()` can be found in the
 ## Integrating Negative Control LOD
 
 The negative control (NC) LOD method requires at least 10 negative controls in a
-dataset. Negative control data is available in the standard exported Explore 
-HT, Reveal, and Explore 384/3072 NPX parquet files. NCs can be identified 
-through the SampleID and SampleType columns.
+dataset. Negative control data is available in the standard exported Olink NGS
+NPX parquet files. NCs can be identified through the SampleID and SampleType
+columns.
 
 A negative control will not contribute to the minimum number of required NCs if
 the negative control does not pass sample QC criteria (sample QC failure or
