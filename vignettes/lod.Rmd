@@ -189,6 +189,23 @@ explore_npx <- OlinkAnalyze::read_NPX(
 )
 ```
 
+------------------------------------------------------------------------
+
+#### *A note on calculating LOD with clean_npx()*
+
+*LOD should always be calculated before preprocessing with `clean_npx()`, 
+regardless of whether the fixed LOD or Negative Control LOD method is used.*
+
+*By default, `clean_npx()` removes both internal and external controls, which 
+are required to calculate count-based LOD values. If `olink_lod()` is run 
+without the internal or external controls present, the function will still 
+execute, but all count-based LODs will be assigned `NA` values. More 
+information on `clean_npx()` can be found in the
+[Olink Analyze Overview tutorial](https://CRAN.R-project.org/package=OlinkAnalyze).*
+
+
+------------------------------------------------------------------------
+
 ## Integrating Negative Control LOD
 
 The negative control (NC) LOD method requires at least 10 negative controls in a
@@ -230,22 +247,6 @@ these counts do not correlate to true background levels. The converted NPX
 values should not be used as LOD values for these assays.*
 
 ------------------------------------------------------------------------
-
-#### *A note on calculating LOD with clean_npx()*
-
-*LOD should always be calculated before preprocessing with `clean_npx()`, 
-regardless of whether the fixed LOD or Negative Control LOD method is used.*
-
-*By default, `clean_npx()` removes both internal and external controls, which 
-are required to calculate count-based LOD values. If `olink_lod()` is run 
-without the internal or external controls present, the function will still 
-execute, but all count-based LODs will be assigned `NA` values. More 
-information on `clean_npx()` can be found in the
-[Olink Analyze Overview tutorial](https://CRAN.R-project.org/package=OlinkAnalyze).*
-
-
-------------------------------------------------------------------------
-
 
 The resulting LOD is the PC normalized negative control LOD. In the event that
 the Explore or Reveal dataset is intensity normalized, an intensity 
