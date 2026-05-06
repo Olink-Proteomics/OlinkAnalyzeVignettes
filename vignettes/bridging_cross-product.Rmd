@@ -508,9 +508,9 @@ information, see the [Downstream Analysis] section below.
 ```{r, eval = FALSE, echo = TRUE}
 ### Perform bridge normalization
 
-# Note: 
+# Note:
 # Project name is assigned by `df1_project_nr` and `df2_project_nr` parameters
-# in `olink_normalization` function 
+# in `olink_normalization` function
 
 # Perform between-product bridging without formatting for downstream analysis
 npx_br_data <- OlinkAnalyze::olink_normalization(
@@ -852,11 +852,11 @@ f11 <- paste("Combined PCA of bridging samples from both platforms after",
 ```{r pca_pre_sc, eval=FALSE, echo=TRUE}
 # Generate pre-bridging PCA using Sample Control samples
 
-npx_br_data |> 
-  dplyr::filter(.data[["SampleType"]] == "SAMPLE_CONTROL") |> 
+npx_br_data |>
+  dplyr::filter(.data[["SampleType"]] == "SAMPLE_CONTROL") |>
   dplyr::mutate(
     SampleID = paste(.data[["Project"]], .data[["SampleID"]], sep = "_")
-  ) |> 
+  ) |>
   OlinkAnalyze::olink_pca_plot(
     color_g = "Project"
   )
