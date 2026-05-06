@@ -1,5 +1,5 @@
 ---
-title: "Introduction to bridging of Olink® NPX datasets"
+title: "Introduction to bridging Olink® NPX datasets"
 output: 
   html_vignette:
     toc: true
