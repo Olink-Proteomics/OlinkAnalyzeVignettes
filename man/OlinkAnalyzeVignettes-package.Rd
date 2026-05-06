@@ -22,6 +22,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Kathleen Nevola \email{biostattools@olink.com} (\href{https://orcid.org/0000-0002-5183-6444}{ORCID}) (kathy-nevola)
   \item Marianne Sandin (\href{https://orcid.org/0000-0001-6186-963X}{ORCID}) (marisand)
   \item Jamey Guess (\href{https://orcid.org/0000-0002-4017-0923}{ORCID}) (jrguess)
   \item Simon Forsberg (\href{https://orcid.org/0000-0002-7451-9222}{ORCID}) (simfor)
