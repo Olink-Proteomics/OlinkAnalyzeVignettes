@@ -220,7 +220,6 @@ rm(
 )
 ```
 
-
 ------------------------------------------------------------------------
 
 #### *A note on calculating LOD with clean_npx()*
@@ -231,7 +230,7 @@ sample warnings to ensure that the LOD values are calculated correctly. This can
 be done by setting the following parameters to FALSE in the `clean_npx()`
 function: `remove_control_assay`, `remove_control_sample`,
 `remove_assay_warning` and `remove_qc_warning`. This should be done regardless
-of LOD method that is used (fixed LOD or Negative Control LOD).*
+of the LOD method that is used (fixed LOD or Negative Control LOD).*
 
 *By default, `clean_npx()` removes both internal and external controls, which 
 are required to calculate count-based LOD values. If `olink_lod()` is run 
@@ -239,9 +238,14 @@ without the internal or external controls present, the function will still
 execute, but all count-based LODs will be assigned `NA` values. In addition,
 the `olink_lod()` function contains code to exclude only the relevant assay and
 QC warnings for the LOD calculation, so these warnings do not need to be removed
-for LOD to be calculated. More information on `clean_npx()` can be found in the
-[Olink Analyze Overview tutorial](https://CRAN.R-project.org/package=OlinkAnalyze).*
+for LOD to be calculated.*
 
+*The function `clean_npx()` can be applied with default settings after LOD has
+been calculated to remove controls and warnings from the dataset and prepare it
+for downstream analyses.*
+
+*More information on `clean_npx()` can be found in the
+[Olink Analyze Overview tutorial](https://CRAN.R-project.org/package=OlinkAnalyze).*
 
 ------------------------------------------------------------------------
 
@@ -375,23 +379,22 @@ df_npx_fixed_lod_clean <- OlinkAnalyze::clean_npx(
 )
 
 ## Generate check log on cleaned data with LOD
-check_log_df_npx_fixed_lod_clean <- OlinkAnalyze::check_npx(
+check_log_npx_fixed_lod_clean <- OlinkAnalyze::check_npx(
   df = df_npx_fixed_lod_clean
 )
 
 # Cleanup intermediate objects
 rm(
-  fixedlod_filepath,
   df_npx_fixed_lod,
   check_log_df_npx_fixed_lod
 )
 
 # Rename final cleaned data with LOD for clarity
 df_npx_fixed_lod <- df_npx_fixed_lod_clean
-check_log_df_npx_fixed_lod <- check_log_df_npx_fixed_lod_clean
+check_log_df_npx_fixed_lod <- check_log_npx_fixed_lod_clean
 rm(
   df_npx_fixed_lod_clean,
-  check_log_df_npx_fixed_lod_clean
+  check_log_npx_fixed_lod_clean
 )
 ```
 
@@ -521,7 +524,7 @@ df_npx_both_lod_clean <- OlinkAnalyze::clean_npx(
 )
 
 ## Generate check log on cleaned data
-check_log_df_npx_both_lod_clean <- OlinkAnalyze::check_npx(
+check_log_npx_both_lod_clean <- OlinkAnalyze::check_npx(
   df = df_npx_both_lod_clean
 )
 
@@ -533,10 +536,10 @@ rm(
 
 # Rename final cleaned data with both LOD for clarity
 df_npx_both_lod <- df_npx_both_lod_clean
-check_log_df_npx_both_lod <- check_log_df_npx_both_lod_clean
+check_log_df_npx_both_lod <- check_log_npx_both_lod_clean
 rm(
   df_npx_both_lod_clean,
-  check_log_df_npx_both_lod_clean
+  check_log_npx_both_lod_clean
 )
 
 # Add metadata for export
