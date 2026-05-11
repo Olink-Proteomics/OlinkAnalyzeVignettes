@@ -261,8 +261,9 @@ OlinkAnalyze::olink_displayPlateDistributions(
 )
 ```
 
-In the case of the randomization is not performed well, the randomization could
-be performed again with different seed number and iterations number.
+If the randomization algorithm fails to converge or it is not performed well,
+the randomization could be performed again with different settings for `seed`
+and `iterations`.
 
 ## Data Output
 
