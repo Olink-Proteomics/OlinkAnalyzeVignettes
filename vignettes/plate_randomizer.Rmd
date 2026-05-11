@@ -98,6 +98,7 @@ controls. The Olink external controls can also be set to be randomized
 throughout the plate using the `rand_ctrl` argument.
 
 ```{r randomize_subject, message = FALSE, eval = TRUE, echo = TRUE}
+# Example longitudinal randomization with subjects kept on the same plate.
 randomized_manifest_subject <- OlinkAnalyze::olink_plate_randomizer(
   Manifest = OlinkAnalyze::manifest,
   Product = "Explore HT",
