@@ -106,7 +106,6 @@ randomized_manifest_subject <- OlinkAnalyze::olink_plate_randomizer(
 )
 ```
 
-
 ```{r randomize_controls, message = FALSE, eval = FALSE, echo = TRUE}
 randomized_manifest_random <- OlinkAnalyze::olink_plate_randomizer(
   Manifest = OlinkAnalyze::manifest,
