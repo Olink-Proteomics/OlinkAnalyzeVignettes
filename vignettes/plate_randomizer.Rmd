@@ -35,7 +35,7 @@ same subject that are taken at various times during a longitudinal research
 should all be placed on the same plate to further limit data fluctuation. In
 order to evenly disperse the remaining experimental variables between plates,
 the individuals should subsequently be distributed. If randomization is not
-performed true biological variation may be missed or misidentified as e.g.
+performed, true biological variation may be missed or misidentified as e.g.
 technical variations. However, it would be challenging for us to control every
 variable. Most of the time, a complete randomization will be carried out, and
 the outcomes can be assessed by visualizing the layout of the plates. In this
