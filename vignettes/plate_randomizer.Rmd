@@ -155,9 +155,6 @@ randomized_manifest_num <- OlinkAnalyze::olink_plate_randomizer(
 )
 ```
 
-
-
-
 ## Multi-study manifests
 
 In the case of a manifest that includes multiple studies, the optional `study`
