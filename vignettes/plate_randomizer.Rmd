@@ -136,11 +136,14 @@ randomized_manifest_subject |>
   )
 ```
 
-The number of samples on each plate could be specified via the
-`available.spots` argument. For example, the following code will lead to 48
-samples on the first and the second plate, and 42 samples on the third plates.
-The number of iterations for fitting subjects on the same plate can be set by
-the `iterations` argument.
+The number of samples on each plate could be specified via the `available.spots`
+argument. For example, the following code will lead to 48 samples on the first
+and the second plate, and 42 samples on the third plate. The number of
+iterations for fitting subjects on the same plate can be set by the `iterations`
+argument. Increasing the number of iterations allows additional randomization
+attempts to the algorithm to satisfy the constraints in the expense of increased
+computation time. The randomization can be reproduced by setting the `seed`
+argument to a specific number.
 
 ```{r subjects_randomization, message = FALSE, results = 'hide'}
 randomized_manifest_num <- OlinkAnalyze::olink_plate_randomizer(
