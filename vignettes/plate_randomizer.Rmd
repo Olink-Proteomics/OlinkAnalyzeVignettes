@@ -250,7 +250,7 @@ OlinkAnalyze::olink_displayPlateDistributions(
 )
 ```
 
-We could also check the distribution of other variables. For examples, the
+We could also check the distribution of other variables. For example, the
 distribution of the variable `Site` could be visualized by setting
 `fill.color = 'Site'`.
 
