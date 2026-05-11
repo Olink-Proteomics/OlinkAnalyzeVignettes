@@ -179,7 +179,7 @@ and `olink_displayPlateDistributions()` functions could be used.
 The `olink_displayPlateLayout()` function could be used to visualize the layouts
 of the plate and specifying the color for the variable of interest using the
 `color_g` argument. The label of the colored variable could be shown in the plot
-via the `include.label` argument.
+`color_g` argument.
 
 ```{r figure_captions, message = FALSE, echo = FALSE}
 fcap1 <- paste0(
