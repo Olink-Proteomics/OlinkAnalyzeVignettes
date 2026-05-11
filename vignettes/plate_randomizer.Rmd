@@ -280,7 +280,8 @@ columns with following additional ones:
   - well: Well location on the plate
 
 The randomized manifest could be outputted as an Excel file using the
-`write_xlsx` function from Package `writexl`.
+The randomized manifest could be exported as an Excel spreadsheet using the
+function `write_xlsx()` from the R package `writexl`.
 
 ```{r, eval = FALSE}
 writexl::write_xlsx(
