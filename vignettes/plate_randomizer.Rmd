@@ -108,6 +108,7 @@ randomized_manifest_subject <- OlinkAnalyze::olink_plate_randomizer(
 ```
 
 ```{r randomize_controls, message = FALSE, eval = FALSE, echo = TRUE}
+# Randomize Olink external control samples.
 randomized_manifest_random <- OlinkAnalyze::olink_plate_randomizer(
   Manifest = OlinkAnalyze::manifest,
   Product = "Explore HT",
