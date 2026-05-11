@@ -268,7 +268,8 @@ be performed again with different seed number and iterations number.
 
 The output of the randomization function would be a "tibble" including SampleID,
 SubjectID etc. assigned to well positions. Columns include same columns as
-Manifest with additional columns:
+SubjectID etc. assigned to well positions. Columns include the original Manifest
+columns with following additional ones:
 
   - plate: Plate number
 
