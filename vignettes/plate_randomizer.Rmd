@@ -131,7 +131,10 @@ randomized_manifest_subject |>
     digits = 4L,
     longtable = TRUE,
     row.names = FALSE,
-    caption = "Table 2. Example of Randomized Sample manifest with subjects kept on the same plate.",
+    caption = paste0(
+      "Table 2. Example of Randomized Sample manifest ",
+      "with subjects kept on the same plate."
+    ),
     label = "manifest"
   )
 ```
