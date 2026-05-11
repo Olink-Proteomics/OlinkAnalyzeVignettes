@@ -239,7 +239,7 @@ OlinkAnalyze::olink_displayPlateLayout(
 ### Plate distribution
 
 The distribution of the given grouping variable on each plate could be
-visualized via a bar chart using function `olink_displayPlateDistributions`. By
+visualized with a bar chart using function `olink_displayPlateDistributions()`. By
 setting `fill.color = 'SubjectID'`, we could make sure all the samples from the
 same subject were put on the same plate.
 
