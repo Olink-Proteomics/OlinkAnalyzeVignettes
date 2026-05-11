@@ -158,7 +158,7 @@ randomized_manifest_num <- OlinkAnalyze::olink_plate_randomizer(
 ## Multi-study manifests
 
 In the case of a manifest that includes multiple studies, the optional `study`
-argument can be used to group samples by study and randomized the samples within
+argument can be used to group samples by study and randomize the samples within
 the study. In the example below, "Site" is used as a surrogate for study. After
 randomization the sites are kept together across plates.
 
