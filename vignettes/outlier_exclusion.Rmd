@@ -35,7 +35,6 @@ knitr::opts_knit$set(eval.after = "fig.cap")
 ## Introduction
 
 ```{r Outlier_data, include = FALSE, error = TRUE, message = FALSE, warning = FALSE}
-
 # Use provided example dataset (npx_data1)
 npx_data1 <- OlinkAnalyze::npx_data1
 
@@ -110,7 +109,6 @@ Samples or groups.
 
 ```{r dataset_generation, eval = FALSE, message = FALSE, warning = FALSE}
 # Use provided example dataset (npx_data1)
-
 npx_data1 <- OlinkAnalyze::npx_data1
 
 # NPX file preprocessing
