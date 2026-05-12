@@ -284,11 +284,12 @@ check_log_npx_data1 <- OlinkAnalyze::check_npx(
   df = npx_data1
 )
 
-## Clean NPX 
+## Clean NPX
 npx_data1_clean <- OlinkAnalyze::clean_npx(
-  df = npx_data1,  
-  #Keeping duplicated SampleIDs because the sample controls in these datasets have the same SampleIDs    
-  remove_dup_sample_id = FALSE, 
+  df = npx_data1,
+  #Keeping duplicated SampleIDs because the sample controls in these datasets
+  #have the same SampleIDs
+  remove_dup_sample_id = FALSE,
   check_log = check_log_npx_data1
 )
 
@@ -308,8 +309,9 @@ check_log_npx_data2 <- OlinkAnalyze::check_npx(
 
 ## Clean NPX
 npx_data2_clean <- OlinkAnalyze::clean_npx(
-  df = npx_data2,  
-    #Keeping duplicated SampleIDs because the sample controls in these datasets have the same SampleIDs
+  df = npx_data2,
+  #Keeping duplicated SampleIDs because the sample controls in these datasets
+  #have the same SampleIDs
   remove_dup_sample_id = FALSE,
   check_log = check_log_npx_data2
 )
@@ -374,7 +376,7 @@ we can then determine the success of the bridging process post bridging. Figure
 distribution.
 
 ```{r check, message = FALSE, fig.cap = f2}
-# Expand the datasets to contain the Project column 
+# Expand the datasets to contain the Project column
 npx_1 <- npx_data1_clean |>
   dplyr::mutate(
     Project = "data1"
@@ -488,7 +490,7 @@ if (requireNamespace(package = "ggpubr", quietly = TRUE)) {
     df = npx_df_no_ctrl,
     color_g = "Type",
     byPanel = TRUE,
-    check_log = check_log_npx_df_no_ctrl 
+    check_log = check_log_npx_df_no_ctrl
   )
 }
 ```
@@ -848,6 +850,15 @@ removed the batch effects between two data sets.
 ### Generate unique SampleIDs
 
 npx_df_br_no_ctrl <- npx_df_br |>
+  # Remove control samples
+  dplyr::filter(
+    stringr::str_detect(
+      string = .data[["SampleID"]],
+      pattern = "CONTROL_SAMPLE",
+      negate = TRUE
+    )
+  ) |>
+  # Mark bridge samples with "Bridge" and other samples with "Sample"
   dplyr::mutate(
     Type = dplyr::if_else(
       .data[["SampleID"]] %in% .env[["overlapping_samples"]],
@@ -856,37 +867,36 @@ npx_df_br_no_ctrl <- npx_df_br |>
     )
   ) |>
   dplyr::mutate(
-    SampleID = paste0(.data[["Project"]],
-                      .data[["PlateID"]],
-                      .data[["SampleID"]])
+    SampleID = paste0(.data[["SampleID"]],
+                      .data[["Project"]])
   )
 
 if (requireNamespace(package = "ggpubr", quietly = TRUE)) {
-  ### PCA plot
   ## Generate check log
   check_log_npx_df_br_no_ctrl <- OlinkAnalyze::check_npx(
     df = npx_df_br_no_ctrl
   )
-  
+
+  ### PCA plot
   OlinkAnalyze::olink_pca_plot(
     df = npx_df_br_no_ctrl,
     color_g = "Type",
     byPanel = TRUE,
-    check_log = check_log_npx_df_br_no_ctrl 
+    check_log = check_log_npx_df_br_no_ctrl
   )
 }
 ```
 
 ## Export Bridged data
 
-Normalized data can be exported using write.table to export long format data.
-Note that 2 columns are added during the bridging process, so to have the input
-format match the export format the Project and Adj_factor columns will need to
-be removed. To export the new project, `dplyr::filter` can be used to filter by
-Project.
+Normalized data in long format can be exported using the `write.table()`
+function. Note that 2 columns are added during the bridging process, so to have
+the export format match the input format, the columns "Project" and "Adj_factor"
+need to be removed. To export exclusively the non-reference project, the
+`dplyr::filter()` function can be used.
 
 ```{r, eval = FALSE}
-new_normalized_data <- npx_df_br |>
+npx_df_br |>
   dplyr::filter(
     .data[["Project"]] == "data2"
   ) |>
