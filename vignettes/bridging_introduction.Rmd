@@ -152,18 +152,18 @@ in the example code below.
 npx_data1 <- OlinkAnalyze::npx_data1
 
 # NPX file preprocessing
-## Generate check log
+# Generate check log
 check_log_npx_data1 <- OlinkAnalyze::check_npx(
   df = npx_data1
 )
 
-## Clean NPX
+# Clean NPX
 npx_data1_clean <- OlinkAnalyze::clean_npx(
   df = npx_data1,
   check_log = check_log_npx_data1
 )
 
-## Generate check log on cleaned data
+# Generate check log on cleaned data
 check_log_npx_data1_clean <- OlinkAnalyze::check_npx(
   df = npx_data1_clean
 )
@@ -345,12 +345,12 @@ Further, we will preprocess the NPX files using the functions `check_npx()` and
 
 ```{r preprocessing2, eval = TRUE}
 # NPX file preprocessing - npx_data1
-## Generate check log
+# Generate check log
 check_log_npx_data1 <- OlinkAnalyze::check_npx(
   df = npx_data1
 )
 
-## Clean NPX
+# Clean NPX
 npx_data1_clean <- OlinkAnalyze::clean_npx(
   df = npx_data1,
   # Retain control samples and assays
@@ -362,29 +362,29 @@ npx_data1_clean <- OlinkAnalyze::clean_npx(
   check_log = check_log_npx_data1
 )
 
-## Generate check log on cleaned data
+# Generate check log on cleaned data
 check_log_npx_data1_clean <- OlinkAnalyze::check_npx(
   df = npx_data1_clean
 )
 
-## cleanup intermediate variables
+# cleanup intermediate variables
 rm(
   npx_data1,
   check_log_npx_data1
 )
 
 # NPX file preprocessing - npx_data2
-## Generate check log
+# Generate check log
 check_log_npx_data2 <- OlinkAnalyze::check_npx(
   df = npx_data2
 )
 
-## Clean NPX
+# Clean NPX
 npx_data2_clean <- OlinkAnalyze::clean_npx(
   df = npx_data2,
   #Keeping duplicated SampleIDs because the sample controls in these datasets
   #have the same SampleIDs
-    # Retain control samples and assays
+  # Retain control samples and assays
   remove_control_assay = FALSE,
   remove_control_sample = FALSE,
   # Retain assay and QC warnings
@@ -393,12 +393,12 @@ npx_data2_clean <- OlinkAnalyze::clean_npx(
   check_log = check_log_npx_data2
 )
 
-## Generate check log on cleaned data
+# Generate check log on cleaned data
 check_log_npx_data2_clean <- OlinkAnalyze::check_npx(
   df = npx_data2_clean
 )
 
-## cleanup intermediate variables
+# cleanup intermediate variables
 rm(
   npx_data2,
   check_log_npx_data2
@@ -501,7 +501,7 @@ npx_df_no_ctrl <- npx_df |>
                       .data[["SampleID"]])
   )
 
-## Generate check log
+# Generate check log
   check_log_npx_df_no_ctrl <- OlinkAnalyze::check_npx(
     df = npx_df_no_ctrl
   )
@@ -549,7 +549,7 @@ PC1, indicating batch differences between the two datasets.
 
 ```{r pca1, message = FALSE, fig.cap = f3}
 if (requireNamespace(package = "ggpubr", quietly = TRUE)) {
-  ### PCA plot
+  # PCA plot
   OlinkAnalyze::olink_pca_plot(
     df = npx_df_no_ctrl,
     color_g = "Type",
@@ -602,7 +602,7 @@ npx_df_br <- OlinkAnalyze::olink_normalization_bridge(
   project_2_check_log = check_log_npx_data2_clean
 )
 
-## generate check log on bridged data
+# generate check log on bridged data
 check_log_npx_df_br <- OlinkAnalyze::check_npx(
   df = npx_df_br
 )
@@ -677,7 +677,7 @@ npx_df_br_no_ctrl <- npx_df_br |>
                       .data[["Project"]])
   )
 
-## Generate check log
+# Generate check log
   check_log_npx_df_br_no_ctrl <- OlinkAnalyze::check_npx(
     df = npx_df_br_no_ctrl
   )
@@ -922,7 +922,7 @@ sets.
 
 ```{r pca2, message = FALSE, fig.cap = f8}
 if (requireNamespace(package = "ggpubr", quietly = TRUE)) {
-  ### PCA plot
+  # PCA plot
   OlinkAnalyze::olink_pca_plot(
     df = npx_df_br_no_ctrl,
     color_g = "Type",
