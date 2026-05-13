@@ -303,13 +303,13 @@ data_reveal <- OlinkAnalyze::read_NPX(
 # Generate check log
 check_log_data_e3072 <- OlinkAnalyze::check_npx(
   df = data_e3072
-  )
+)
 check_log_data_eht <- OlinkAnalyze::check_npx(
   df = data_eht
-  )
+)
 check_log_data_reveal <- OlinkAnalyze::check_npx(
   df = data_reveal
-  )
+)
 
 # Clean NPX data
 data_e3072_clean <- OlinkAnalyze::clean_npx(
