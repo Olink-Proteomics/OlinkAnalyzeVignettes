@@ -235,12 +235,14 @@ specifically to bridging normalization:
     paired differences.
 
 -   `QSNormalizedNPX`: NPX values after normalization using quantile smoothing.
-    
+
+Beofre:   
 Data from Explore 3072 and the reference product (Explore HT or Reveal) are
 concatenated in the function export. For studies involving Explore HT and Olink
 Reveal, data from these two products are also concatenated in the same way. Two
 additional columns are added to aid in data mapping and export.
 
+After:
 After bridging, data from Explore 3072 and the reference product (Explore HT or 
 Reveal) are exported into a single data set. For studies involving both Explore
 HT and Olink Reveal, data are exported in the same way after bridging Two 
