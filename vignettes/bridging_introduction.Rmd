@@ -69,8 +69,10 @@ dplyr::tibble(
   "Olink Product" = c(
     "Target 96",
     "Explore 384: Cardiometabolic, Inflammation, Neurology, and Oncology",
-    paste("Explore 384: Cardiometabolic II, Inflammation II, Neurology II,",
-          "and Oncology II"),
+    paste(
+      "Explore 384: Cardiometabolic II, Inflammation II, Neurology II,",
+          "and Oncology II"
+      ),
     "Explore 3072",
     "Explore HT",
     "Reveal",
@@ -92,7 +94,9 @@ dplyr::tibble(
     booktabs = TRUE,
     digits = 2L,
     caption =
-      paste("Table 1. Recommended number of bridge samples for Olink products.")
+      paste(
+        "Table 1. Recommended number of bridge samples for Olink products."
+        )
   ) |>
   kableExtra::kable_styling(
     bootstrap_options = "striped",
@@ -180,6 +184,7 @@ bridge_samples <- OlinkAnalyze::olink_bridge_selector(
   n = 16L,
   check_log = check_log_npx_data1_clean
 )
+
 # Excluding control samples manually. Naming convention may differ.
 bridge_samples_manual <- npx_data1 |>
   dplyr::filter(
@@ -275,11 +280,11 @@ npx_data2 <- OlinkAnalyze::read_NPX(
 
 To demonstrate how bridging works, we will use the example datasets (`npx_data1`
 and `npx_data2`) from the **Olink Analyze** package. This workflow also uses
-functions from the R packages `dplyr`, `stringr`, and `ggplot2`. The example 
-datasets contain control samples with duplicated SampleIDs across over datasets.
-Because downstream functions does not allow duplicates we will rename the
-control samples to have unique SampleIDs by appending a unique suffix to the
-control sample IDs in each dataset. This process is shown in the code below.
+functions from the R packages `dplyr`, `stringr`, and `ggplot2`. The example
+datasets contain control samples with duplicated `SampleIDs` across datasets.
+Because downstream functions do not allow duplicates we will rename the control
+samples to have unique SampleIDs by appending a unique suffix to the control
+sample IDs in each dataset. This process is shown in the code below.
 
 ```{r data_uniq_sid, eval = TRUE, echo = TRUE}
 # Load example dataset (npx_data1)
@@ -339,7 +344,6 @@ npx_data2 <- OlinkAnalyze::npx_data2 |>
   )
 ```
 
-
 Further, we will preprocess the NPX files using the functions `check_npx()` and
 `clean_npx()` as shown earlier.
 
@@ -382,8 +386,6 @@ check_log_npx_data2 <- OlinkAnalyze::check_npx(
 # Clean NPX
 npx_data2_clean <- OlinkAnalyze::clean_npx(
   df = npx_data2,
-  #Keeping duplicated SampleIDs because the sample controls in these datasets
-  #have the same SampleIDs
   # Retain control samples and assays
   remove_control_assay = FALSE,
   remove_control_sample = FALSE,
@@ -439,7 +441,7 @@ overlapping_samples |>
     booktabs = TRUE,
     digits = 2L,
     align = "c",
-    caption = "Table 3. Overlapping Bridge Samples"
+    caption = "Table 3. Overlapping Bridge Samples."
   ) |>
 kableExtra::column_spec(
     1, width = "7cm"
@@ -456,8 +458,8 @@ Then, gain an overview of the datasets that are going to be bridged. For
 example, plot and compare NPX distribution between datasets, as shown in Figure
 2. By having a sense of how the studies compared to each other before bridging,
 we can then determine the success of the bridging process post bridging. Figure
-2 shows a large overlap between npx_data1 and npx_data2, however there are still
-some differences as indicated by the blue and red areas on the edge of the
+2 shows a large overlap between `npx_data1` and `npx_data2`, however there are
+still some differences as indicated by the blue and red areas on the edge of the
 distribution.
 
 ```{r check, message = FALSE, fig.cap = f2}
@@ -497,13 +499,13 @@ npx_df_no_ctrl <- npx_df |>
     ) |>
   # Ensure that SampleIDs are unique across projects for downstream functions.
   dplyr::mutate(
-    SampleID = paste0(.data[["Project"]],
-                      .data[["SampleID"]])
+    SampleID = paste0(.data[["SampleID"]],
+                      .data[["Project"]])
   )
 
 # Generate check log
-  check_log_npx_df_no_ctrl <- OlinkAnalyze::check_npx(
-    df = npx_df_no_ctrl
+check_log_npx_df_no_ctrl <- OlinkAnalyze::check_npx(
+  df = npx_df_no_ctrl
   )
 
 # Plot NPX density before bridging
@@ -543,7 +545,7 @@ included in the PCA plot because they are not expected to be representative of
 the rest of the dataset, and therefore the variation between sample and control
 samples could skew the PCA, making it more challenging to see differences
 between projects. Additional, the PCA function does not support multiple samples
-with the same SampleID, which is also why the bridge samples in the second
+with the same identifier, which is also why the bridge samples in the second
 project are appended with "\_new". In Figure 3, data1 and data2 separate along
 PC1, indicating batch differences between the two datasets.
 
@@ -581,7 +583,7 @@ samples. The resulting dataset will contain the reference dataset, which will be
 identical to the input reference data, with adjustment factors of 0, and the
 newly bridged dataset.
 
-NOTE : The alternative quantification columns (for example: Quantified value,
+**NOTE:** The alternative quantification columns (for example: Quantified value,
 count, and Ct data) are not normalized.
 
 ```{r bridging, message = FALSE}
@@ -635,9 +637,10 @@ npx_df_br |>
 `olink_normalization_bridge()` also supports data where the overlapping samples
 (bridge samples) are not named the same in both projects. In this case the
 `overlapping_samples_list` will contain 2 arrays of equal length where the index
-of each entry corresponds to the same sample. For example, if a sample had the
-SampleID of `Sample_1_Aliquot_1` in the first batch and `Sample_1_Aliquot_2` in
-the second batch, then the overlap sample list should look as the following.
+of each entry corresponds to the same sample. For example, if a sample has the
+`SampleID` `Sample_1_Aliquot_1` in the first batch and `Sample_1_Aliquot_2` in
+the second batch, then the `overlapping_samples_list` should be defined as 
+follows.
 
 ```{r, echo = TRUE, eval = FALSE}
 overlapping_samples_list <- list(
@@ -678,8 +681,8 @@ npx_df_br_no_ctrl <- npx_df_br |>
   )
 
 # Generate check log
-  check_log_npx_df_br_no_ctrl <- OlinkAnalyze::check_npx(
-    df = npx_df_br_no_ctrl
+check_log_npx_df_br_no_ctrl <- OlinkAnalyze::check_npx(
+  df = npx_df_br_no_ctrl
   )
 
 # Plot NPX density after bridging
