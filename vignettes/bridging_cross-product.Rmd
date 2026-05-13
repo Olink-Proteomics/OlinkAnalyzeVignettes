@@ -81,7 +81,7 @@ Explore 3072, Olink^®^ Explore HT, and Olink^®^ Reveal products.
 The joint analysis of two or more NPX projects run on the same Olink
 product often requires a project correction step to remove
 technical variation. One such method of normalizing two projects is referred to
-as bridge sample reference normalization, bridge normalization, or just simply
+as bridge sample reference normalization, bridge normalization, or simply
 bridging. For more information on within-product bridging, see the 
 [Introduction to Bridging tutorial](bridging_introduction.html). Bridging makes
 certain assumptions on the distributions of the assays, namely that we are
@@ -95,8 +95,8 @@ Explore 3072 and either Olink Explore HT or Olink Reveal, an additional project
 correction step is required to allow data from these two products to be analyzed
 together, which is referred to as between-product bridging. Olink Explore 3072,
 Olink Explore HT, and Olink Reveal are all products that use PEA technology
-combined with next generation sequencing to calculate NPX for thousands of
-proteins. However, assays may vary more between products then within a product,
+combined with next generation sequencing (NGS) to calculate NPX for thousands of
+proteins. However, assays may vary more between products than within a product,
 and fewer assumptions can be made regarding the similarity of assay
 distributions and variance between products.
 
@@ -148,18 +148,18 @@ Explore HT data set and Olink Reveal data set requires 24-40 bridging samples.
 Bridging samples are shared samples among data sets and, as such, are analyzed
 in both data sets. Olink NPX data sets without shared samples cannot be combined
 using the bridging approach described below. More information on bridge sample
-selection can be found in the
-[selecting bridging samples section](bridging_introduction.html#selecting-bridging-samples)
-of the Introduction to Bridging tutorial.
+selection can be found in the section [selecting bridging samples](bridging_introduction.html#selecting-bridging-samples) of the 
+Introduction to Bridging tutorial.
 
 ## Bridge Sample Selection
 
 Prior to running a study with Explore HT or Olink Reveal, bridging samples must
 be selected from the study run with Explore 3072 and be run on the subsequent
 study. These samples can be selected using the `olink_bridgeselector()` function
-in Olink Analyze as detailed in the
-[Introduction to bridging tutorial](bridging_introduction.html#selecting-bridging-samples).
-In addition, for studies involving Explore HT and Olink Reveal, bridging can
+in Olink Analyze as detailed in the section [selecting bridging samples](bridging_introduction.html#selecting-bridging-samples) of the 
+Introduction to Bridging tutorial.
+
+In addition, for studies involving Explore HT and Reveal, bridging can
 also be performed directly between Explore HT and Reveal in either direction. In
 these cases, bridging samples should be selected from the run used as the
 reference and included in the corresponding subsequent run. The recommended
@@ -175,34 +175,23 @@ controls as detailed in the
 
 ```{r brnrtab, eval = TRUE, message = FALSE, echo = FALSE}
 dplyr::tibble(
-  Platform = c("Target 96",
-               paste0("Explore 384: \n",
-                      "Cardiometabolic, Inflammation, ",
-                      "Neurology, and Oncology"),
-               paste0("Explore 384: \n",
-                      "Cardiometabolic II, Inflammation II,",
-                      "Neurology II, and Oncology II"),
-               "Explore HT",
-               "Reveal",
-               "Explore 3072 to Explore HT",
-               "Explore 3072 to Reveal",
-               "Explore HT to Reveal",
-               "Reveal to Explore HT"
+  "Olink Product" = c(
+    "'Olink Explore 3072' to 'Olink Explore HT'",
+    "'Olink Explore 3072' to 'Olink Reveal'",
+    "'Olink Explore HT' to 'Olink Reveal'",
+    "'Olink Reveal' to 'Olink Explore HT'"
   ),
-  BridgingSamples = c("8-16",
-                      "8-16",
-                      "16-24",
-                      "16-32",
-                      "16-24",
-                      "40-64",
-                      "32-48",
-                      "24-40",
-                      "24-40")
+  "Number of Bridge Samples" = c(
+    "40-64",
+    "32-48",
+    "24-40",
+    "24-40"
+  )
 ) |>
   kableExtra::kbl(
     booktabs = TRUE,
     digits = 2L,
-    caption = "Recommended number of bridging samples for Olink platforms"
+    caption = "Recommended number of bridging samples for Olink products"
   ) |>
   kableExtra::kable_styling(
     bootstrap_options = "striped",
@@ -215,20 +204,18 @@ dplyr::tibble(
 ## Workflow Overview
 
 Olink Explore 3072 to Olink Explore HT bridging requires Explore 3072 data and
-Explore HT data which have at least 40 to 64 bridging samples. Olink Explore
+Explore HT data which have at least 40 to 64 bridge samples. Olink Explore
 3072 to Olink Reveal bridging requires Explore 3072 data and Reveal data which
-have at least 32 to 48 bridging samples. Bridging between Olink Explore HT and
+have at least 32 to 48 bridge samples. Bridging between Olink Explore HT and
 Olink Reveal, requires Explore HT data and Reveal data which have at least 24 to
-40 bridging samples.
+40 bridge samples.
 
-For studies containing multiple projects of Explore 3072 data, the Explore 3072
-data sets should be bridged using within-product bridging as detailed in the
-[Introduction to bridging tutorial](bridging_introduction.html) or otherwise
-normalized together prior to performing between-product bridging. The same
-principle applies when performing bridging between Explore HT and Olink Reveal:
-if multiple HT studies or multiple Reveal studies are available, within-product
-bridging is recommended to bridging all the HT studies or all the Reveal studies
-together first in advance of the between-product bridging.
+For studies that include multiple Explore 3072 data sets, these data sets should
+first be bridged using a within-product approach, as described in the 
+[Introduction to bridging tutorial](bridging_introduction.html). The same 
+principle applies when bridging data between Explore HT and Olink Reveal. If 
+multiple HT or Reveal studies are available, it is recommended to first perform within-product bridging to combine all HT studies or all Reveal studies, 
+respectively, before proceeding with between-product bridging.
 
 The assays from Explore 3072 are matched to their corresponding assays in
 Explore HT or Reveal and evaluated to determine whether each assay is
@@ -236,11 +223,13 @@ bridgeable. For studies involving Explore HT and Olink Reveal, the assays
 between these two products are also matched and assessed for bridgeability in
 the same manner. All assays are then normalized using both quantile smoothing
 and normalization based on the median of paired differences. The output is an
-adjusted dataset that includes five additional columns, three of which relate
+adjusted data set that includes five additional columns, three of which relate
 specifically to bridging normalization:
 
 -   `BridgingRecommendation`: a flag which indicates if the assay is bridgeable
-    and, if so, which normalization method is recommended.
+    and, if so, which normalization method is recommended. One of the three
+    values will be listed in this column: "NotBridgeable", "MedianCentering", or
+    "QuantileSmoothing".
 
 -   `MedianCenteredNPX`: NPX values after normalization using the median of
     paired differences.
@@ -249,14 +238,20 @@ specifically to bridging normalization:
     
 Data from Explore 3072 and the reference product (Explore HT or Reveal) are
 concatenated in the function export. For studies involving Explore HT and Olink
-Reveal, data from these two products are also concatenated in the same way when
-performing bridging between HT and Reveal. Two additional columns are added to
-aid in data mapping and export.
+Reveal, data from these two products are also concatenated in the same way. Two
+additional columns are added to aid in data mapping and export.
 
--   `Project`: the name of the project as define in the function input.
+After bridging, data from Explore 3072 and the reference product (Explore HT or 
+Reveal) are exported into a single data set. For studies involving both Explore
+HT and Olink Reveal, data are exported in the same way after bridging Two 
+additional columns are added to facilitate data mapping and export.
 
--   `OlinkID_E3072`: mapped Olink IDs from Explore 3072. Olink IDs from Explore
-    HT or Reveal will be listed in the `OlinkID` column.
+-   `Project`: the name of the project as define in the function input arguments `df1_project_nr` and `df2_project_nr`.
+
+-   `OlinkID_PRODUCT`: mapped Olink IDs from non-reference Olink product. The
+term "PRODUCT" in the column name will be replaced by the non-reference name of
+the product: "E3072", "HT" or "Reveal" (e.g. `OlinkID_E3072`). Olink IDs from
+the reference product will be listed in the `OlinkID` column.
     
 Note that regardless of the bridging recommendation, NPX values will be
 available for both normalization methods. A visual representation of the
