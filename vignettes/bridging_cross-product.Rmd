@@ -236,13 +236,6 @@ specifically to bridging normalization:
 
 -   `QSNormalizedNPX`: NPX values after normalization using quantile smoothing.
 
-Beofre:   
-Data from Explore 3072 and the reference product (Explore HT or Reveal) are
-concatenated in the function export. For studies involving Explore HT and Olink
-Reveal, data from these two products are also concatenated in the same way. Two
-additional columns are added to aid in data mapping and export.
-
-After:
 After bridging, data from Explore 3072 and the reference product (Explore HT or 
 Reveal) are exported into a single data set. For studies involving both Explore
 HT and Olink Reveal, data are exported in the same way after bridging Two 
@@ -272,18 +265,15 @@ fcap <- "Schematic of Between-Product Bridging Workflow"
 
 ## Import NPX files
 
-To normalize Explore 3072 data to Explore HT or Reveal data, first the two data
-sets are read into R using `read_NPX()`. If more than two data sets are being
-normalized, all Explore 3072 studies should be normalized together prior to
-normalizing between products and the concatenated bridged data set should be
-used as the input. In the case of multiple Explore HT studies or multiple Reveal
-studies, only one study should be chosen as the reference data set. 
+To normalize Explore 3072 data to Explore HT or Olink Reveal data, the data sets
+should first be read into R using `read_NPX()`. If more than two datasets are
+being normalized, all Explore 3072 studies should first be normalized through within-product bridging. The resulting data set should then be used as input for between-product bridging. In the case of multiple Explore HT studies or multiple
+Reveal studies, only one study should be chosen as the reference data set. 
 
-For studies involving Explore HT and Olink Reveal, the same principle applies:
-when performing HT and Reveal bridging, the two datasets should be read in using
-`read_NPX()`, and if multiple HT studies or multiple Reveal studies are
-available,the data set after within-product bridging should be used as the
-input.
+The same principle applies to studies involving Explore HT and Olink Reveal. 
+When performing bridging between these products, data sets should be read using `read_NPX()`. If multiple HT or Reveal studies are available, within-product 
+bridging should be performed first, and the resulting data set should be used as
+the input.
 
 The data can be loaded using `read_NPX()` function with default Olink Software
 NPX file as input, as shown below.
