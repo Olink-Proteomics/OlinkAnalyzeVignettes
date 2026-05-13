@@ -714,7 +714,7 @@ npx_br_data_bridgeable_plt <- npx_br_data_clean |>
     check_log = check_log_br_data_clean,
     # Important to note that setting `olink_id` to NULL will generate plots for
     # all assays. This can be computationally intensive if there are many
-    # assays! 
+    # assays!
     # To generate plots for a subset of assays, set `olink_id` to a vector of
     # Olink IDs of interest.
     olink_id = NULL,
@@ -906,12 +906,12 @@ f11 <- paste("Combined PCA of bridging samples from both platforms after",
 ```{r, eval = FALSE, echo = TRUE}
 # Prepare data for PCA plots - pre-bridging
 
-npx_pre_data <- data_eht_clean |> 
+npx_pre_data <- data_eht_clean |>
   dplyr::mutate(
     Project = "Explore HT"
-  ) |> 
+  ) |>
   dplyr::bind_rows(
-    data_e3072_clean |> 
+    data_e3072_clean |>
       dplyr::mutate(
         Project = "Explore 3072"
       )
@@ -932,7 +932,7 @@ npx_pre_data |>
   dplyr::filter(.data[["SampleType"]] == "SAMPLE_CONTROL") |>
   dplyr::mutate(
     SampleID = paste(.data[["Project"]], .data[["SampleID"]], sep = "_")
-  ) |> 
+  ) |>
   OlinkAnalyze::olink_pca_plot(
     check_log = check_log_pre_data,
     color_g = "Project",
@@ -961,7 +961,7 @@ npx_pre_data |>
   ) |>
   dplyr::mutate(
     SampleID = paste(.data[["Project"]], .data[["SampleID"]], sep = "_")
-  ) |> 
+  ) |>
   OlinkAnalyze::olink_pca_plot(
     check_log = check_log_pre_data,
     color_g = "Project"
