@@ -148,18 +148,16 @@ Explore HT data set and Olink Reveal data set requires 24-40 bridging samples.
 Bridging samples are shared samples among data sets and, as such, are analyzed
 in both data sets. Olink NPX data sets without shared samples cannot be combined
 using the bridging approach described below. More information on bridge sample
-selection can be found in the section
-[selecting bridging samples](bridging_introduction.html#selecting-bridging-samples)
-of the Introduction to Bridging tutorial.
+selection can be found in the section [selecting bridging samples](bridging_introduction.html#selecting-bridging-samples) of the 
+Introduction to Bridging tutorial.
 
 ## Bridge Sample Selection
 
 Prior to running a study with Explore HT or Olink Reveal, bridging samples must
 be selected from the study run with Explore 3072 and be run on the subsequent
 study. These samples can be selected using the `olink_bridgeselector()` function
-in Olink Analyze as detailed in the section
-[selecting bridging samples](bridging_introduction.html#selecting-bridging-samples)
-of the Introduction to Bridging tutorial.
+in Olink Analyze as detailed in the section [selecting bridging samples](bridging_introduction.html#selecting-bridging-samples) of the 
+Introduction to Bridging tutorial.
 
 In addition, for studies involving Explore HT and Reveal, bridging can
 also be performed directly between Explore HT and Reveal in either direction. In
@@ -173,18 +171,7 @@ LOD in the sample are considered when determining if a sample is chosen as a
 bridging sample. When LOD data is not available in the data export from Olink
 NPX software, LOD can optionally be calculated from fixed LOD or negative
 controls as detailed in the
-In addition, for studies involving Explore HT and Reveal, bridging can also be
-performed directly between Explore HT and Reveal in either direction. In these
-cases, bridging samples should be selected from the run used as the reference
-and included in the corresponding subsequent run. The recommended number of
-bridge samples for within- and between- product bridging is summarized in th
-table below. When selecting bridge samples, the aim is to select samples that
-represent the dynamic range of the assay expression in the product. As such,
-quality control of the sample and, if available, proportion of data above LOD in
-the sample are considered when determining if a sample is chosen as a bridging
-sample. When LOD data is not available in the data export from Olink NPX
-software, LOD can optionally be calculated from fixed LOD or negative controls
-as detailed in the [Calculating LOD from Olink Explore data tutorial](lod.html).
+[Calculating LOD from Olink Explore data tutorial](lod.html).
 
 ```{r brnrtab, eval = TRUE, message = FALSE, echo = FALSE}
 dplyr::tibble(
@@ -227,9 +214,8 @@ Olink Reveal, requires Explore HT data and Reveal data which have at least 24 to
 For studies that include multiple Explore 3072 data sets, these data sets should
 first be bridged using a within-product approach, as described in the 
 [Introduction to bridging tutorial](bridging_introduction.html). The same 
-principle applies when bridging data between Explore HT and Olink Reveal. If
-multiple HT or Reveal studies are available, it is recommended to first perform
-within-product bridging to combine all HT studies or all Reveal studies,
+principle applies when bridging data between Explore HT and Olink Reveal. If 
+multiple HT or Reveal studies are available, it is recommended to first perform within-product bridging to combine all HT studies or all Reveal studies, 
 respectively, before proceeding with between-product bridging.
 
 The assays from Explore 3072 are matched to their corresponding assays in
@@ -243,8 +229,8 @@ specifically to bridging normalization:
 
 -   `BridgingRecommendation`: a flag which indicates if the assay is bridgeable
     and, if so, which normalization method is recommended. One of the three
-    values will be listed in this column: "NotBridgeable", "MedianCentering", 
-    "QuantileSmoothing" or "NotOverlapping".
+    values will be listed in this column: "NotBridgeable", "MedianCentering", or
+    "QuantileSmoothing".
 
 -   `MedianCenteredNPX`: NPX values after normalization using the median of
     paired differences.
@@ -260,9 +246,9 @@ are added to facilitate data mapping and export.
 arguments `df1_project_nr` and `df2_project_nr`.
 
 -   `OlinkID_PRODUCT`: mapped Olink IDs from non-reference Olink product. The
-    term "PRODUCT" in the column name will be replaced by the non-reference name
-    of the product: "E3072", "HT" or "Reveal" (e.g. `OlinkID_E3072`). Olink IDs
-    from the reference product will be listed in the `OlinkID` column.
+term "PRODUCT" in the column name will be replaced by the non-reference name of
+the product: "E3072", "HT" or "Reveal" (e.g. `OlinkID_E3072`). Olink IDs from
+the reference product will be listed in the `OlinkID` column.
     
 Note that regardless of the bridging recommendation, NPX values will be
 available for both normalization methods. A visual representation of the
@@ -276,21 +262,18 @@ knitr::include_graphics(
   error = FALSE
 )
 
-fcap <- "Schematic of between-product bridging workflow."
+fcap <- "Schematic of Between-Product Bridging Workflow"
 ```
 
 ## Import NPX files
 
 To normalize Explore 3072 data to Explore HT or Olink Reveal data, the data sets
 should first be read into R using `read_NPX()`. If more than two datasets are
-being normalized, all Explore 3072 studies should first be normalized through
-within-product bridging. The resulting data set should then be used as input for
-between-product bridging. In the case of multiple Explore HT studies or multiple
+being normalized, all Explore 3072 studies should first be normalized through within-product bridging. The resulting data set should then be used as input for between-product bridging. In the case of multiple Explore HT studies or multiple
 Reveal studies, only one study should be chosen as the reference data set. 
 
 The same principle applies to studies involving Explore HT and Olink Reveal. 
-When performing bridging between these products, data sets should be read using
-`read_NPX()`. If multiple HT or Reveal studies are available, within-product
+When performing bridging between these products, data sets should be read using `read_NPX()`. If multiple HT or Reveal studies are available, within-product 
 bridging should be performed first, and the resulting data set should be used as
 the input.
 
@@ -298,6 +281,8 @@ The data can be loaded using `read_NPX()` function with default Olink Software
 NPX file as input, as shown below.
 
 ```{r message = FALSE, eval = FALSE, echo = TRUE}
+### Use provided example dataset
+
 # Explore 3072: CSV or parquet file
 data_e3072 <- OlinkAnalyze::read_NPX(
   filename = "~/NPX_Explore3072_location.parquet"
@@ -391,20 +376,19 @@ rm(
 
 First, confirm that there are overlapping sample IDs within the study. Note that
 external controls should not be included in the list of bridging samples, as
-detailed in the section
-[selecting bridging samples](bridging_introduction.html#selecting-bridging-samples)
-of the Introduction to Bridging tutorial. External control samples often share
-the same naming convention across data sets but may represent different samples
-due to reagent batch differences. Appending the project name to the end of the
-control samples can ensure unique Sample IDs. For the example below, Explore HT
-data is used as the reference project; however, the same process can be
-performed using Reveal as the reference data set. The equivalent workflow also
-applies when performing bridging between Explore HT and Reveal, where either
-product may be used as the reference.
+detailed in the section [selecting bridging samples](bridging_introduction.html#selecting-bridging-samples) of the 
+Introduction to Bridging tutorial. External control samples often share the same
+naming convention across data sets but may represent different samples due to
+reagent batch differences. Appending the project name to the end of the control
+samples can ensure unique Sample IDs. For the example below, Explore HT data is
+used as the reference project; however, the same process can be performed using
+Reveal as the reference data set. The equivalent workflow also applies when
+performing bridging between Explore HT and Reveal, where either product may be
+used as the reference.
 
 ```{r, eval = FALSE, echo = TRUE}
-# Note that if `SampleType` is not in input data, `stringr::str_detect()` can be
-# used to exclude control samples based on `SampleID`.
+# Note that if `SampleType` is not is input data:
+# stringr::str_detect can be used to exclude control samples based on SampleID.
 
 data_e3072_samples <- data_e3072_clean |>
   dplyr::filter(
@@ -549,7 +533,7 @@ information, see the [Downstream Analysis] section below.
 
 # Note:
 # Project name is assigned by `df1_project_nr` and `df2_project_nr` parameters
-# in `olink_normalization()` function
+# in `olink_normalization` function
 
 # Perform between-product bridging without formatting for downstream analysis
 npx_br_data <- OlinkAnalyze::olink_normalization(
@@ -591,8 +575,6 @@ check_log_br_data <- OlinkAnalyze::check_npx(
 npx_br_data_clean <- OlinkAnalyze::clean_npx(
   df = npx_br_data,
   check_log = check_log_br_data,
-  # keep duplicated sample IDs because this will remove the bridge samples
-  remove_dup_sample_id = FALSE,
   # keep only control samples as we will need them for downstream QC
   remove_control_sample = FALSE
 )
@@ -615,11 +597,7 @@ For an assay to be bridgeable across products, it must either have signal in
 both products or be primarily background signal in both products. Bridging noise
 into signal or signal into noise can negatively impact downstream statistical
 analysis. To determine if an assay is bridgeable, the bridge samples from both
-analysis. Prior to assessment, outlier bridging samples are excluded. A sample
-is considered an outlier if the NPX value is more than 3 times the interquartile
-range above or below the median on either product.To determine if an assay is
-bridgeable, the bridge samples from both products are used to assess the
-following criteria:
+products are used to assess the following criteria:
 
 -   Is there a linear relationship between products?
     -   **Assessing linearity across products:** To determine if there
@@ -681,11 +659,7 @@ compared between the two products:
     differences is recommended. By default this cutoff difference is set
     to 0.2.
 
-After assessment, an assay is considered bridgeable if it meets any of the first
-three criteria. The fourth criterion determines which normalization method is
-recommended for bridging. Note that bridgeable assays will differ between
-projects based on the expression of bridge samples in the studies. An overview
-of these criteria is visualized below.
+An overview of these criteria is visualized below.
 
 ```{r, echo = FALSE, fig.cap = fcap, out.width = "50%"}
 knitr::include_graphics(
@@ -706,7 +680,7 @@ fcap <- paste(
 \
 \
 
-The `olink_bridgeability_plot()` function generates a series of figures on a
+The `olink_bridgeability_plot` function generates a series of figures on a
 per-assay basis for a data set generated from between-product bridging, based
 on the bridging samples used in the bridge normalization. The coloration of the
 figure headers indicate whether that assay has been defined as bridgeable or not
@@ -719,10 +693,17 @@ If an assay is determined to be bridgeable, the ECDF curve and corresponding KS
 statistic are used to determine which normalization approach (median centering
 or quantile smoothing) is most suitable for between-product normalization.
 
+Prior to assessment, outlier bridging samples are excluded. A sample is
+considered an outlier if the NPX value is more than 3 times the interquartile
+range above or below the median on either product.
 
-Here, the Explore 3072 to Explore HT bridging case is shown as the example,
-although the same principles apply to other product combinations, including
-Olink Explore HT and Olink Reveal.
+After assessment, an assay is considered bridgeable if it meets any of the first
+three criteria. The fourth criterion determines which normalization method is
+recommended for bridging. Note that bridgeable assays will differ between
+projects based on the expression of bridge samples in the studies. Here, the
+Explore 3072 to Explore HT bridging case is shown as the example, although the
+same principles apply to other product combinations, including Olink Explore HT
+and Olink Reveal.
 
 ```{r, eval = FALSE, echo = TRUE}
 ### Generate olink_bridgeability_plot figures
@@ -738,7 +719,7 @@ npx_br_data_bridgeable_plt <- npx_br_data_clean |>
     # assays!
     # To generate plots for a subset of assays, set `olink_id` to a vector of
     # Olink IDs of interest.
-    olink_id = c("OID40770", "OID40835", "OID40981", "OID40986", "OID41012"),
+    olink_id = NULL,
     median_counts_threshold = 150L,
     min_count = 10L
   )
@@ -767,14 +748,14 @@ of paired differences based on the bridging samples is performed in the
 following steps:
 
 1.  For each assay in the non-reference project (e.g. Explore 3072), the
-    pairwise difference is calculated for each of the bridging samples with the
-    Explore HT project.
+pairwise difference is calculated for each of the bridging samples with the
+Explore HT project.
 
 2.  The normalization factor is estimated for each assay by finding the
 median of the pairwise differences.
 
 3.  The assay-specific normalization factor for each assay is used to normalize
-    each data point from the non-reference to the reference project.
+each data point from the non-reference to the reference project.
 
 ### Quantile smoothing
 
@@ -793,38 +774,25 @@ the equivalent space in the reference product using an empirical cumulative
 distribution function. The empirical cumulative distribution function is a
 probability model that uses the observed NPX values of the bridging samples for
 an assay to create a step function that interpolates linearly between available
-1.  Each data point of the samples from the non-reference project is mapped to
-    the equivalent space in the reference product using an empirical cumulative
-    distribution function. The empirical cumulative distribution function is a
-    probability model that uses the observed NPX values of the bridging samples
-    for an assay to create a step function that interpolates linearly between
-    available data points.
+data points.
 
 2.  The empirical distribution function is then used to map the data points from
 the source product to the reference product space using the specified quantiles.
 At this stage, all data points from the bridging samples have NPX values
-2.  The empirical distribution function is then used to map the data points from
-    the source product to the reference product space using the specified
-    quantiles. At this stage, all data points from the bridging samples have NPX
-    values normalized to the reference product.
+normalized to the reference product.
 
 3.  To normalize the remaining data, a spline regression model is constructed
 using the sorted data from the source product (prior to mapping) and the mapped
 values, along with the anchor points of the spline. A spline regression model
 divides the dataset at the quantiles and uses these quantiles as anchor points
-3.  To normalize the remaining data, a spline regression model is constructed
-    using the sorted data from the source product (prior to mapping) and the
-    mapped values, along with the anchor points of the spline. A spline
-    regression model divides the dataset at the quantiles and uses these
-    quantiles as anchor points or knots; the model then fits the values between
-    each anchor point.
+or knots; the model then fits the values between each anchor point.
 
 4.  The spline regression model is used to predict all remaining data points
-    from the non-reference product into the space of the reference product. The
-    model consists of piecewise linear regressions within the quantile
-    intervals. The NPX value from the source product is used as the x-value in
-    the appropriate interval to produce the predicted y-value corresponding to
-    the NPX scale of the reference product.
+from the non-reference product into the space of the reference product. The
+model consists of piecewise linear regressions within the quantile intervals.
+The NPX value from the source product is used as the x-value in the appropriate
+interval to produce the predicted y-value corresponding to the NPX scale of the
+reference product.
 
 ### Function Output
 
@@ -837,12 +805,10 @@ recommendation is listed in the `BridgingRecommendation` column and
 lists what method, if any, should be used for that assay. Additional
 columns including `OlinkID` and `OlinkID_PRODUCT` [Workflow Overview] map the
 assays across products and the `Project` column lists the name of the project
-based on the `df1_project_nr` and `df2_project_nr` arguments. The resulting
-data set will contain the newly between product bridged data set.
-As the reference data is not altered during normalization, the
-normalized NPX values (`MedianCenteredNPX` and `QSNormalizedNPX`) in the 
-reference data will be the same as the values in the NPX column which contains
-the non-normalized data.
+based on the `df1_project_nr` and `df2_project_nr` arguments. As the reference
+data is not altered during normalization, the normalized NPX values
+(`MedianCenteredNPX` and `QSNormalizedNPX`) in the reference data will be the
+same as the values in the NPX column which contains the non-normalized data.
 
 ```{r, eval = TRUE, echo = FALSE}
 try(
@@ -956,21 +922,20 @@ check_log_pre_data <- OlinkAnalyze::check_npx(
 )
 
 # no need to clean data set `npx_pre_data`
+# ```
 ```
 
 ```{r pca_pre_sc, eval = FALSE, echo = TRUE}
 # Generate pre-bridging PCA using Sample Control samples
 
 npx_pre_data |>
-  dplyr::filter(
-    .data[["SampleType"]] == "SAMPLE_CONTROL"
-  ) |>
+  dplyr::filter(.data[["SampleType"]] == "SAMPLE_CONTROL") |>
   dplyr::mutate(
     SampleID = paste(.data[["Project"]], .data[["SampleID"]], sep = "_")
   ) |>
   OlinkAnalyze::olink_pca_plot(
     check_log = check_log_pre_data,
-    color_g = "Project"
+    color_g = "Project",
   )
 ```
 
