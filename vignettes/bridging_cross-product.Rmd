@@ -191,7 +191,8 @@ dplyr::tibble(
   kableExtra::kbl(
     booktabs = TRUE,
     digits = 2L,
-    caption = "Recommended number of bridging samples for Olink products"
+    caption = paste("Recommended number of bridge samples for normalizing",
+                    "between Olink products.")
   ) |>
   kableExtra::kable_styling(
     bootstrap_options = "striped",
@@ -238,10 +239,11 @@ specifically to bridging normalization:
 
 After bridging, data from Explore 3072 and the reference product (Explore HT or 
 Reveal) are exported into a single data set. For studies involving both Explore
-HT and Olink Reveal, data are exported in the same way after bridging Two 
-additional columns are added to facilitate data mapping and export.
+HT and Olink Reveal, data are exported in the same way. Two additional columns
+are added to facilitate data mapping and export.
 
--   `Project`: the name of the project as define in the function input arguments `df1_project_nr` and `df2_project_nr`.
+-   `Project`: the name of the project as defined in the function input
+arguments `df1_project_nr` and `df2_project_nr`.
 
 -   `OlinkID_PRODUCT`: mapped Olink IDs from non-reference Olink product. The
 term "PRODUCT" in the column name will be replaced by the non-reference name of
@@ -508,14 +510,14 @@ knitr::include_graphics(
 The `olink_normalization()` functionality has been expanded and can be used to
 determine which assays are bridgeable and of the bridgeable assays what
 normalization method is advised, and to calculate normalized NPX values for the
-Explore 3072 non-reference project. Normalized NPX values are calculated for
-all assays across products as described in the [Workflow Overview] and in the
-sections below. Within this function, the bridging recommendations for each
-assay are determined and the NPX values are normalized using the two methods
-described below.
+non-reference project. Normalized NPX values are calculated for all assays 
+across products as described in the [Workflow Overview] and in the sections
+below. Within this function, the bridging recommendations for each assay are
+determined and the NPX values are normalized using the two methods described
+below.
 
 The `olink_normalization()` function contains a `format` argument that is set to 
-'FALSE' by default. This will export the data frame with the format shown in
+`FALSE` by default. This will export the data frame with the format shown in
 Table 4 of the [Function Output] section. The values in the NPX column will
 remain unchanged and median-centered NPX values and QS-normalized NPX values
 will be populated in the `MedianCenteredNPX` and `QSNormalizedNPX` columns for
@@ -732,7 +734,7 @@ knitr::include_graphics(
 )
 
 fcap <- paste("Visualization of an assay's bridgeability criteria as generated",
-              "by the `olink_bridgeability_plot` function.")
+              "by the `olink_bridgeability_plot()` function.")
 ```
 \
 \
