@@ -1,12 +1,9 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/Olink-Proteomics/OlinkAnalyzeVignettes/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Olink-Proteomics/OlinkAnalyzeVignettes/actions/workflows/R-CMD-check.yaml)
 [![lint](https://github.com/Olink-Proteomics/OlinkAnalyzeVignettes/actions/workflows/lint.yaml/badge.svg)](https://github.com/Olink-Proteomics/OlinkAnalyzeVignettes/actions/workflows/lint.yaml)
-[![CRAN
-status](https://www.r-pkg.org/badges/version/OlinkAnalyzeVignettes)](https://CRAN.R-project.org/package=OlinkAnalyzeVignettes)
 <!-- badges: end -->
 
 # Olink® Analyze Vignettes
