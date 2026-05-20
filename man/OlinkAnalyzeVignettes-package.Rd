@@ -11,7 +11,7 @@ A collection of vignettes to exemplify analysis of proteomic data from Olink, pr
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://olink.com/ https://github.com/Olink-Proteomics/OlinkRPackage https://github.com/Olink-Proteomics/OlinkAnalyzeVignettes}
+  \item \url{https://olink.com/} \url{https://github.com/Olink-Proteomics/OlinkRPackage}
 }
 
 }
@@ -20,6 +20,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Kathleen Nevola \email{biostattools@olink.com} (\href{https://orcid.org/0000-0002-5183-6444}{ORCID}) (kathy-nevola)
   \item Marianne Sandin (\href{https://orcid.org/0000-0001-6186-963X}{ORCID}) (marisand)
   \item Jamey Guess (\href{https://orcid.org/0000-0002-4017-0923}{ORCID}) (jrguess)
   \item Simon Forsberg (\href{https://orcid.org/0000-0002-7451-9222}{ORCID}) (simfor)
