@@ -30,7 +30,7 @@ You can install the development version of Olink® Analyze Vignettes from
 ``` r
 # install.packages("remotes")
 remotes::install_github(
-  repo = "Olink-Proteomics/OlinkAnalyzeVignettes",\
+  repo = "Olink-Proteomics/OlinkAnalyzeVignettes",
   ref = "main",
   build_vignettes = TRUE
 )
